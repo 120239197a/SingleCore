@@ -95,10 +95,10 @@ bool GossipSelect_npc_arena_honor(Player *pPlayer, Creature *pCreature, uint32 s
 
 void AddSC_npc_arena_honor()
 {
-    Script *pNewScript;
+    Script* pNewScript;
     pNewScript = new Script;
     pNewScript->Name="npc_arena_honor";
     pNewScript->pGossipHello =  &GossipHello_npc_arena_honor;
     pNewScript->pGossipSelect = &GossipSelect_npc_arena_honor;
-    pNewScript->RegisterSelf();
+    pNewScript->RegisterSelf(false);
 }

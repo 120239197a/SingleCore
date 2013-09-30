@@ -62,7 +62,7 @@ bool GossipHello_mob_teleguy(Player* player, Creature* _Creature)
 
 void SendDefaultMenu_mob_teleguy(Player* player, Creature* _Creature, uint32 action)
 {
-    if (player->IsInCombat())
+    if (player->isInCombat())
     {
         player->CLOSE_GOSSIP_MENU();
         _Creature->MonsterSay("You are in combat!", LANG_UNIVERSAL);
@@ -1105,5 +1105,5 @@ void AddSC_mob_teleguy()
     pNewScript->Name = "mob_teleguy";
     pNewScript->pGossipHello = &GossipHello_mob_teleguy;
     pNewScript->pGossipSelect = &GossipSelect_mob_teleguy;
-    pNewScript->RegisterSelf();
+    pNewScript->RegisterSelf(false);
 }
