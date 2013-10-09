@@ -62,7 +62,7 @@ struct MANGOS_DLL_DECL boss_thermapluggAI : public ScriptedAI
     GuidList m_lSummonedBombGUIDs;
     GuidList m_lLandedBombGUIDs;
 
-    void Reset()
+    void Reset() override
     {
         m_uiKnockAwayTimer = urand(17000, 20000);
         m_uiActivateBombTimer = urand(10000, 15000);

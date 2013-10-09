@@ -81,7 +81,7 @@ struct MANGOS_DLL_DECL boss_moroesAI : public ScriptedAI
 
     bool m_bEnrage;
 
-    void Reset()
+    void Reset() override
     {
         m_uiVanishTimer     = 30000;
         m_uiBlindTimer      = 35000;

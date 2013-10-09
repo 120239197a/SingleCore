@@ -106,7 +106,7 @@ struct MANGOS_DLL_DECL boss_king_magni_bronzebreardAI : public ScriptedAI
     uint32 m_uiKnockAwayTimer;
     uint32 m_uiStormboltTimer;
 
-    void Reset()
+    void Reset() override
     {
         m_uiAvatarTimer     = 15000;
         m_uiKnockAwayTimer  = 8000;
@@ -181,7 +181,7 @@ struct MANGOS_DLL_DECL boss_high_tinker_mekkatorqueAI : public ScriptedAI
     uint32 m_uiGoblinDragonGunTimer;
     uint32 m_uiSuperShrinkRayTimer;
 
-    void Reset()
+    void Reset() override
     {
         m_uiBombTimer               = 10000;
         m_uiGoblinDragonGunTimer    = 15000;
