@@ -113,6 +113,7 @@ void InitScriptLibrary()
     outstring_log("MM  M M  M ");
     outstring_log(" MMM  MMM  http://www.scriptdev2.com");
     outstring_log("R2 modifications included (https://github.com/mangosR2/scriptdev2)");
+	outstring_log("R2 modifications included (https://github.com/fallenangelX/I_ScriptDev2)");
     outstring_log(SD2_VERSION);
 
     // Get configuration file
