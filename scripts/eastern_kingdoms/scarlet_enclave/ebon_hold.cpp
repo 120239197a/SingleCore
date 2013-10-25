@@ -38,6 +38,10 @@ EndContentData */
 #include "escort_ai.h"
 #include "world_map_ebon_hold.h"
 #include "pet_ai.h"
+#include "ObjectMgr.h"
+#include "TemporarySummon.h"
+#include "WorldPacket.h"
+#include "Vehicle.h"
 
 /*######
 ## npc_a_special_surprise
@@ -515,6 +519,11 @@ enum
     SPELL_DUEL_VICTORY          = 52994,
     SPELL_DUEL_FLAG             = 52991,
 
+    SPELL_BLOOD_STRIKE_DUEL     = 52374,
+    SPELL_DEATH_COIL_DUEL       = 52375,
+    SPELL_ICY_TOUCH_DUEL        = 52372,
+    SPELL_PLAGUE_STRIKE_DUEL    = 52373,
+
     GOSSIP_ITEM_ACCEPT_DUEL     = -3609000,
     GOSSIP_TEXT_ID_DUEL         = 13433,
 
@@ -534,14 +543,22 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
     ObjectGuid m_duelerGuid;
     uint32 m_uiDuelTimer;
     bool m_bIsDuelInProgress;
+    uint32 m_uiBloodStrike_Timer;
+    uint32 m_uiDeathCoil_Timer;
+    uint32 m_uiIcyTouch_Timer;
+    uint32 m_uiPlagueStrike_Timer;
 
-    void Reset() override
+    void Reset()
     {
         m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_UNK_15);
 
         m_duelerGuid.Clear();
         m_uiDuelTimer = 5000;
         m_bIsDuelInProgress = false;
+        m_uiBloodStrike_Timer = 4000;
+        m_uiDeathCoil_Timer = 6000;
+        m_uiIcyTouch_Timer = 2000;
+        m_uiPlagueStrike_Timer = 5000;
     }
 
     void AttackedBy(Unit* pAttacker) override
@@ -564,11 +581,11 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
         }
     }
 
-    void DamageTaken(Unit* /*pDoneBy*/, uint32& uiDamage) override
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
     {
         if (m_bIsDuelInProgress && uiDamage > m_creature->GetHealth())
         {
-            uiDamage = 0;
+            uiDamage = 10;
 
             if (Player* pPlayer = m_creature->GetMap()->GetPlayer(m_duelerGuid))
                 m_creature->CastSpell(pPlayer, SPELL_DUEL_VICTORY, true);
@@ -597,7 +614,37 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
             return;
         }
 
-        // TODO: spells
+        if (m_uiBloodStrike_Timer < uiDiff)
+        {
+            DoCastSpellIfCan(m_creature->getVictim(),SPELL_BLOOD_STRIKE_DUEL);
+            m_uiBloodStrike_Timer = 9000;
+        }
+        else
+            m_uiBloodStrike_Timer -= uiDiff;
+
+        if (m_uiDeathCoil_Timer < uiDiff)
+        {
+            DoCastSpellIfCan(m_creature->getVictim(),SPELL_DEATH_COIL_DUEL);
+            m_uiDeathCoil_Timer = 8000;
+        }
+        else
+            m_uiDeathCoil_Timer -= uiDiff;
+
+        if (m_uiIcyTouch_Timer < uiDiff)
+        {
+            DoCastSpellIfCan(m_creature->getVictim(),SPELL_ICY_TOUCH_DUEL);
+            m_uiIcyTouch_Timer = 8000;
+        }
+        else
+            m_uiIcyTouch_Timer -= uiDiff;
+
+        if (m_uiPlagueStrike_Timer < uiDiff)
+        {
+            DoCastSpellIfCan(m_creature->getVictim(),SPELL_PLAGUE_STRIKE_DUEL);
+            m_uiPlagueStrike_Timer = 8000;
+        }
+        else
+            m_uiPlagueStrike_Timer -= uiDiff;
 
         DoMeleeAttackIfReady();
     }
@@ -619,7 +666,7 @@ bool GossipHello_npc_death_knight_initiate(Player* pPlayer, Creature* pCreature)
     return false;
 }
 
-bool GossipSelect_npc_death_knight_initiate(Player* pPlayer, Creature* pCreature, uint32 /*uiSender*/, uint32 uiAction)
+bool GossipSelect_npc_death_knight_initiate(Player* pPlayer, Creature* pCreature, uint32 uiSender, uint32 uiAction)
 {
     if (uiAction == GOSSIP_ACTION_INFO_DEF + 1)
     {
@@ -2914,6 +2961,96 @@ bool EffectDummyCreature_npc_acherus_deathcharger(Unit* /*pCaster*/, uint32 uiSp
     return false;
 }
 
+/*######
+## npc_valkyr_battle_maiden
+######*/
+
+enum
+{
+    SPELL_REVIVE    =    51918,
+};
+
+#define REVIVE_WHISPER "It is not yet your time, champion. Rise! Rise and fight once more!"
+
+struct MANGOS_DLL_DECL npc_valkyr_battle_maidenAI : ScriptedAI
+{
+    npc_valkyr_battle_maidenAI(Creature* pCreature) : ScriptedAI(pCreature)
+    {
+        Reset();
+    }
+
+    float x, y, z;
+
+    uint32 m_uiPhase;
+    uint32 m_uiPhaseTimer;
+    ObjectGuid m_summonerGuid;
+
+    void Reset()
+    {
+        m_summonerGuid.Clear();
+        if (m_creature->IsTemporarySummon())
+            m_summonerGuid = ((TemporarySummon*)m_creature)->GetSummonerGuid();
+        else
+            script_error_log("npc_valkyr_battle_maiden: Creature %s must be tempSummoned, but seems as regular summon. Pleas, correct DB contains!", m_creature->GetObjectGuid().GetString().c_str());
+
+        if (m_summonerGuid)
+            if(Unit* pUnit = m_creature->GetMap()->GetUnit(m_summonerGuid))
+                if(pUnit->GetTypeId() != TYPEID_PLAYER)
+                    m_summonerGuid.Clear();
+
+        m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
+
+        m_creature->SetVisibility(VISIBILITY_OFF);
+        m_creature->SetLevitate(true);
+        m_uiPhase = 0;
+        m_uiPhaseTimer = 0;
+    }
+
+    void UpdateAI(const uint32 uiDiff) override
+    {
+        Player* pPlayer = NULL;
+        if (!(pPlayer = (Player*)m_creature->GetMap()->GetUnit(m_summonerGuid)))
+            m_uiPhase = 3;
+
+        if (m_uiPhaseTimer <= uiDiff)
+        {
+            switch (m_uiPhase)
+            {
+                case 0:
+                    pPlayer->GetClosePoint(x, y, z, m_creature->GetObjectBoundingRadius());
+                    m_creature->GetMotionMaster()->MovementExpired();
+                    m_creature->GetMap()->CreatureRelocation(m_creature, x-2.0f , y-1.5f, z+2.5f, 0);
+                    m_creature->SetFacingToObject(pPlayer);
+                    m_creature->SetVisibility(VISIBILITY_ON);
+                    m_uiPhase++;
+                    break;
+                case 1:
+                    m_creature->SetGuidValue(UNIT_FIELD_TARGET, pPlayer->GetObjectGuid());
+                    m_uiPhase++;
+                    break;
+                case 2:
+                    DoCast(pPlayer, SPELL_REVIVE, true);
+                    m_creature->MonsterWhisper(REVIVE_WHISPER, pPlayer);
+                    // cause 51918 has cast time of 2 seconds
+                    m_uiPhaseTimer = 3000;
+                    m_uiPhase++;
+                    break;
+                case 3:
+                    m_creature->ForcedDespawn();
+                default:
+                    break;
+            }
+        }
+        else
+            m_uiPhaseTimer -= uiDiff;
+    }
+};
+
+CreatureAI* GetAI_npc_valkyr_battle_maiden(Creature* pCreature)
+{
+    return new npc_valkyr_battle_maidenAI(pCreature);
+};
+
 void AddSC_ebon_hold()
 {
     Script* pNewScript;
@@ -2983,5 +3120,10 @@ void AddSC_ebon_hold()
     pNewScript->Name = "npc_acherus_deathcharger";
     pNewScript->GetAI = &GetAI_npc_acherus_deathcharger;
     pNewScript->pEffectDummyNPC = &EffectDummyCreature_npc_acherus_deathcharger;
+    pNewScript->RegisterSelf();
+
+    pNewScript = new Script;
+    pNewScript->Name= "npc_valkyr_battle_maiden";
+    pNewScript->GetAI = &GetAI_npc_valkyr_battle_maiden;
     pNewScript->RegisterSelf();
 }
