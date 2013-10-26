@@ -190,12 +190,12 @@ struct MANGOS_DLL_DECL boss_felmystAI : public ScriptedAI
         m_creature->HandleEmote(EMOTE_ONESHOT_LAND);
     }
 
-    void KilledUnit(Unit* /*pVictim*/) override
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(urand(0, 1) ? SAY_KILL_1 : SAY_KILL_2, m_creature);
     }
 
-    void JustDied(Unit* /*pKiller*/) override
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_DEATH, m_creature);
 
@@ -486,9 +486,9 @@ struct MANGOS_DLL_DECL npc_demonic_vaporAI : public ScriptedAI
             pSummoned->CastSpell(pSummoned, SPELL_DEMONIC_VAPOR, true);
     }
 
-    void AttackStart(Unit* /*pWho*/) override { }
-    void MoveInLineOfSight(Unit* /*pWho*/) override { }
-    void UpdateAI(const uint32 /*uiDiff*/) override { }
+    void AttackStart(Unit* pWho) override { }
+    void MoveInLineOfSight(Unit* pWho) override { }
+    void UpdateAI(const uint32 uiDiff) override { }
 };
 
 CreatureAI* GetAI_npc_demonic_vapor(Creature* pCreature)

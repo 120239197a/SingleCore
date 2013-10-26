@@ -415,7 +415,7 @@ struct MANGOS_DLL_DECL boss_kiljaedenAI : public Scripted_NoMovementAI, private 
         m_uiArmageddonTimer         = 20000;
     }
 
-    void Aggro(Unit* /*pWho*/) override
+    void Aggro(Unit* pWho) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_KILJAEDEN, IN_PROGRESS);
@@ -447,7 +447,7 @@ struct MANGOS_DLL_DECL boss_kiljaedenAI : public Scripted_NoMovementAI, private 
         DoScriptText(urand(0, 1) ? SAY_SLAY_1 : SAY_SLAY_2, m_creature);
     }
 
-    void JustDied(Unit* /*pKiller*/) override
+    void JustDied(Unit* pKiller) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_KILJAEDEN, DONE);
@@ -770,9 +770,9 @@ struct MANGOS_DLL_DECL npc_shield_orbAI : public ScriptedAI
         }
     }
 
-    void AttackStart(Unit* /*pWho*/) override {}
-    void MoveInLineOfSight(Unit* /*pWho*/) override {}
-    void UpdateAI(const uint32 /*uiDiff*/) override { }
+    void AttackStart(Unit* pWho) override {}
+    void MoveInLineOfSight(Unit* pWho) override {}
+    void UpdateAI(const uint32 uiDiff) override { }
 };
 
 /*######
@@ -792,7 +792,7 @@ struct MANGOS_DLL_DECL npc_power_blue_flightAI : public ScriptedAI
 
     void Reset() override { }
 
-    void JustDied(Unit* /*pKiller*/) override
+    void JustDied(Unit* pKiller) override
     {
         if (m_creature->IsTemporarySummon())
         {
@@ -803,7 +803,7 @@ struct MANGOS_DLL_DECL npc_power_blue_flightAI : public ScriptedAI
         }
     }
 
-    void UpdateAI(const uint32 /*uiDiff*/) override
+    void UpdateAI(const uint32 uiDiff) override
     {
         if (!m_bHasPossessed)
         {

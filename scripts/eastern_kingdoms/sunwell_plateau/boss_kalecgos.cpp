@@ -140,7 +140,7 @@ struct MANGOS_DLL_DECL boss_kalecgosAI : public ScriptedAI
         ScriptedAI::EnterEvadeMode();
     }
 
-    void Aggro(Unit* /*pWho*/) override
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_EVIL_AGGRO, m_creature);
 
@@ -148,7 +148,7 @@ struct MANGOS_DLL_DECL boss_kalecgosAI : public ScriptedAI
             m_pInstance->SetData(TYPE_KALECGOS, IN_PROGRESS);
     }
 
-    void DamageTaken(Unit* /*pDoneBy*/, uint32& uiDamage) override
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
     {
         if (uiDamage > m_creature->GetHealth())
         {
@@ -165,7 +165,7 @@ struct MANGOS_DLL_DECL boss_kalecgosAI : public ScriptedAI
         }
     }
 
-    void KilledUnit(Unit* /*pVictim*/) override
+    void KilledUnit(Unit* pVictim) override
     {
         DoScriptText(urand(0, 1) ? SAY_EVIL_SLAY_1 : SAY_EVIL_SLAY_2, m_creature);
     }
@@ -207,7 +207,7 @@ struct MANGOS_DLL_DECL boss_kalecgosAI : public ScriptedAI
         }
     }
 
-    void ReceiveAIEvent(AIEventType eventType, Creature* /*pSender*/, Unit* pInvoker, uint32 /*uiMiscValue*/) override
+    void ReceiveAIEvent(AIEventType eventType, Creature* pSender, Unit* pInvoker, uint32 uiMiscValue) override
     {
         if (eventType == AI_EVENT_CUSTOM_A && m_pInstance)
             m_pInstance->AddToSpectralRealm(pInvoker->GetObjectGuid());
@@ -348,7 +348,7 @@ struct MANGOS_DLL_DECL boss_sathrovarrAI : public ScriptedAI
         DoCastSpellIfCan(m_creature, SPELL_SPECTRAL_INVISIBILITY);
     }
 
-    void Aggro(Unit* /*pWho*/) override
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_SATH_AGGRO, m_creature);
 
@@ -359,7 +359,7 @@ struct MANGOS_DLL_DECL boss_sathrovarrAI : public ScriptedAI
         m_creature->SummonCreature(NPC_KALECGOS_HUMAN, aKalecHumanLoc[0], aKalecHumanLoc[1], aKalecHumanLoc[2], aKalecHumanLoc[3], TEMPSUMMON_DEAD_DESPAWN, 0, true);
     }
 
-    void DamageTaken(Unit* /*pDoneBy*/, uint32& uiDamage) override
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
     {
         if (uiDamage > m_creature->GetHealth())
         {
@@ -415,7 +415,7 @@ struct MANGOS_DLL_DECL boss_sathrovarrAI : public ScriptedAI
         ScriptedAI::MoveInLineOfSight(pWho);
     }
 
-    void JustDied(Unit* /*pKiller*/) override
+    void JustDied(Unit* pKiller) override
     {
         DoScriptText(SAY_SATH_DEATH, m_creature);
     }
@@ -426,7 +426,7 @@ struct MANGOS_DLL_DECL boss_sathrovarrAI : public ScriptedAI
             pSummoned->AI()->AttackStart(m_creature);
     }
 
-    void ReceiveAIEvent(AIEventType eventType, Creature* /*pSender*/, Unit* pInvoker, uint32 /*uiMiscValue*/) override
+    void ReceiveAIEvent(AIEventType eventType, Creature* pSender, Unit* pInvoker, uint32 uiMiscValue) override
     {
         if (eventType == AI_EVENT_CUSTOM_A && m_pInstance)
             m_pInstance->AddToSpectralRealm(pInvoker->GetObjectGuid());
@@ -526,12 +526,12 @@ struct MANGOS_DLL_DECL boss_kalecgos_humanoidAI : public ScriptedAI
         DoCastSpellIfCan(m_creature, SPELL_SPECTRAL_INVISIBILITY);
     }
 
-    void Aggro(Unit* /*pWho*/) override
+    void Aggro(Unit* pWho) override
     {
         DoScriptText(SAY_GOOD_AGGRO, m_creature);
     }
 
-    void JustDied(Unit* /*pKiller*/) override
+    void JustDied(Unit* pKiller) override
     {
         if (m_pInstance)
         {
@@ -593,7 +593,7 @@ CreatureAI* GetAI_boss_kalecgos_humanoid(Creature* pCreature)
     return new boss_kalecgos_humanoidAI(pCreature);
 }
 
-bool EffectDummyCreature_spell_spectral_realm_notify(Unit* pCaster, uint32 uiSpellId, SpellEffectIndex uiEffIndex, Creature* pCreatureTarget, ObjectGuid /*originalCasterGuid*/)
+bool EffectDummyCreature_spell_spectral_realm_notify(Unit* pCaster, uint32 uiSpellId, SpellEffectIndex uiEffIndex, Creature* pCreatureTarget, ObjectGuid originalCasterGuid)
 {
     if (uiSpellId == SPELL_SPECTRAL_REALM_NOTIFY && uiEffIndex == EFFECT_INDEX_0)
     {
