@@ -1744,6 +1744,190 @@ CreatureAI* GetAI_npc_scourge_gryphon(Creature* pCreature)
 };
 
 /*######
+## quest How To Win Friends And Influence Enemies  &&  replaces EventAI for these npcs overall
+######*/
+enum win_friends
+{
+    QUEST_HOW_TO_WIN_FRIENDS          = 12720,
+
+    NPC_PREACHER                      = 28939,
+    SPELL_HOLY_FURY_OOC               = 34809,
+    SPELL_HOLY_SMITE                  = 15498,
+
+    NPC_MARKSMEN                      = 28610,
+    SPELL_RAPTOR_STRIKE               = 32915,
+
+    SAY_PERSUADE1                     = -1609101,
+    SAY_PERSUADE2                     = -1609102,
+    SAY_PERSUADE3                     = -1609103,
+    SAY_PERSUADE4                     = -1609104,
+    SAY_PERSUADE5                     = -1609105,
+    SAY_PERSUADE6                     = -1609106,
+    SAY_PERSUADE7                     = -1609107,
+    SAY_CRUSADER1                     = -1609108,
+    SAY_CRUSADER2                     = -1609109,
+    SAY_CRUSADER3                     = -1609110,
+    SAY_CRUSADER4                     = -1609111,
+    SAY_CRUSADER5                     = -1609112,
+    SAY_CRUSADER6                     = -1609113,
+    SAY_PERSUADED1                    = -1609114,
+    SAY_PERSUADED2                    = -1609115,
+    SAY_PERSUADED3                    = -1609116,
+    SAY_PERSUADED4                    = -1609117,
+    SAY_PERSUADED5                    = -1609118,
+    SAY_PERSUADED6                    = -1609119,
+
+    SPELL_PERSUASIVE_STRIKE           = 52781
+};
+
+struct MANGOS_DLL_DECL npc_crusade_persuadedAI : public ScriptedAI
+{
+    npc_crusade_persuadedAI(Creature *pCreature) : ScriptedAI(pCreature)
+    {
+        Reset();
+    }
+
+    ObjectGuid m_playerGUID;
+    uint32 m_uiSpeech_timer;
+    uint32 m_uiSpeech_counter;
+    uint32 m_uiCrusade_faction;
+
+    uint32 m_uiHOLYFURYTimer;
+    uint32 m_uiHOLYSMITETimer;
+    uint32 m_uiRATORSTRIKETimer;
+
+    void Reset()
+    {
+        m_uiSpeech_timer = 0;
+        m_uiSpeech_counter = 0;
+        m_uiCrusade_faction = 0;
+        m_playerGUID.Clear();
+
+        m_uiHOLYFURYTimer     = 60000;
+        m_uiHOLYSMITETimer    = 5500;
+
+        m_uiRATORSTRIKETimer  = 4500;
+    }
+
+    void SpellHit(Unit* caster, const SpellEntry* spell) override
+    {
+        if (caster->GetTypeId() == TYPEID_PLAYER && m_creature->isAlive() && spell->Id == SPELL_PERSUASIVE_STRIKE && m_uiSpeech_counter == 0)
+        {
+            if(((Player*)caster)->GetQuestStatus(QUEST_HOW_TO_WIN_FRIENDS) == QUEST_STATUS_INCOMPLETE)
+            {
+                if (rand()%100 > 90) // chance
+                {
+                    m_playerGUID = ((Player*)caster)->GetObjectGuid();
+                    m_uiCrusade_faction = m_creature->getFaction();
+                    m_uiSpeech_timer = 1000;
+                    m_uiSpeech_counter = 1;
+                    m_creature->setFaction(35);
+                }
+                else if (m_uiSpeech_counter == 0)
+                {
+                    switch(rand()%6)
+                    {
+                        case 0: DoScriptText(SAY_PERSUADE1, caster);break;
+                        case 1: DoScriptText(SAY_PERSUADE2, caster);break;
+                        case 2: DoScriptText(SAY_PERSUADE3, caster);break;
+                        case 3: DoScriptText(SAY_PERSUADE4, caster);break;
+                        case 4: DoScriptText(SAY_PERSUADE5, caster);break;
+                        case 5: DoScriptText(SAY_PERSUADE6, caster);break;
+                        case 6: DoScriptText(SAY_PERSUADE7, caster);break;
+                    }
+                    switch(rand()%5)
+                    {
+                        case 0: DoScriptText(SAY_CRUSADER1, m_creature);break;
+                        case 1: DoScriptText(SAY_CRUSADER2, m_creature);break;
+                        case 2: DoScriptText(SAY_CRUSADER3, m_creature);break;
+                        case 3: DoScriptText(SAY_CRUSADER4, m_creature);break;
+                        case 4: DoScriptText(SAY_CRUSADER5, m_creature);break;
+                        case 5: DoScriptText(SAY_CRUSADER6, m_creature);break;
+                    }
+                }
+            }
+        }
+    }
+
+    void UpdateAI(const uint32 diff)
+    {
+        if (m_uiSpeech_counter >= 1 && m_uiSpeech_counter <= 6)
+        {
+            if (m_uiSpeech_timer < diff)
+            {
+                m_creature->CombatStop(true);
+                m_creature->StopMoving();
+                if (Unit* pPlayer = m_creature->GetMap()->GetPlayer(m_playerGUID))
+                {
+                    switch(m_uiSpeech_counter)
+                    {
+                        case 1: DoScriptText(SAY_PERSUADED1, m_creature); m_uiSpeech_timer = 8000; m_uiSpeech_counter++; break;
+                        case 2: DoScriptText(SAY_PERSUADED2, m_creature); m_uiSpeech_timer = 8000; m_uiSpeech_counter++; break;
+                        case 3: DoScriptText(SAY_PERSUADED3, m_creature); m_uiSpeech_timer = 8000; m_uiSpeech_counter++; break;
+                        case 4: DoScriptText(SAY_PERSUADED4, m_creature); m_uiSpeech_timer = 8000; m_uiSpeech_counter++; break;
+                        case 5: DoScriptText(SAY_PERSUADED5, pPlayer);    m_uiSpeech_timer = 8000; m_uiSpeech_counter++; break;
+                        case 6:
+                            DoScriptText(SAY_PERSUADED6, m_creature);
+                            m_creature->setFaction(m_uiCrusade_faction);
+                            m_uiSpeech_timer = 0;
+                            m_uiCrusade_faction = 0;
+                            m_uiSpeech_counter++;
+                            AttackStart(pPlayer);
+                            if(((Player*)pPlayer)->GetQuestStatus(QUEST_HOW_TO_WIN_FRIENDS) == QUEST_STATUS_INCOMPLETE)
+                                ((Player*)pPlayer)->AreaExploredOrEventHappens(QUEST_HOW_TO_WIN_FRIENDS);
+                            break;
+                    }
+                }
+            }
+            else
+                m_uiSpeech_timer -= diff;
+        }
+        else
+        {
+            if (m_creature->GetEntry() == NPC_PREACHER)
+            {
+               if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
+                   return;
+
+               if (m_uiHOLYSMITETimer < diff)
+               {
+                   DoCastSpellIfCan(m_creature->getVictim(), SPELL_HOLY_SMITE);
+                   m_uiHOLYSMITETimer = 5500 + rand()%1400;
+               }else m_uiHOLYSMITETimer -= diff;
+
+               if (m_uiHOLYFURYTimer < diff)
+               {
+                   DoCastSpellIfCan(m_creature, SPELL_HOLY_FURY_OOC);
+                   m_uiHOLYFURYTimer = 1000 + rand()%90000;
+               }else m_uiHOLYFURYTimer -= diff;
+
+                   DoMeleeAttackIfReady();
+            }
+            else
+            {
+                if (m_creature->GetEntry() == NPC_MARKSMEN)
+                {
+                    if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
+                    return;
+
+                    if (m_uiRATORSTRIKETimer < diff)
+                    {
+                        DoCastSpellIfCan(m_creature->getVictim(), SPELL_RAPTOR_STRIKE);
+                        m_uiRATORSTRIKETimer = 4500 + rand()%1400;
+                    }else m_uiRATORSTRIKETimer -= diff;
+                   DoMeleeAttackIfReady();
+                }
+            }
+        }
+    }
+};
+
+CreatureAI* GetAI_npc_crusade_persuaded(Creature* pCreature)
+{
+   return new npc_crusade_persuadedAI(pCreature);
+};
+
+/*######
 ## npc_highlord_darion_mograine
 ######*/
 
@@ -3396,5 +3580,10 @@ void AddSC_ebon_hold()
     pNewScript = new Script;
     pNewScript->Name = "npc_scarlet_miner";
     pNewScript->GetAI = &GetAI_npc_scarlet_miner;
+    pNewScript->RegisterSelf();
+
+    pNewScript = new Script;
+    pNewScript->Name = "npc_crusade_persuaded";
+    pNewScript->GetAI = &GetAI_npc_crusade_persuaded;
     pNewScript->RegisterSelf();
 }
