@@ -1151,8 +1151,8 @@ enum eEyeOfAcherus
     SPELL_EYE_FL_BOOST_FLY  = 51890,
     SPELL_EYE_CONTROL       = 51852,
 
-    TEXT_EYE_UNDER_CONTROL  = -1666452,
-    TEXT_EYE_LAUNCHED       = -1666451,
+    TEXT_EYE_UNDER_CONTROL  = -1609090,
+    TEXT_EYE_LAUNCHED       = -1609089
 };
 
 struct MANGOS_DLL_DECL npc_eye_of_acherusAI : public ScriptedAI
