@@ -64,13 +64,13 @@ void usage(const char *prog)
     sLog.outString("Usage: \n %s [<options>]\n"
         "    -v, --version            print version and exist\n\r"
         "    -c config_file           use config_file as configuration file\n\r"
+        "    -m MangChat_config       use Mangchat_config as configuration file for MangChat\n\r"
         "    -a, --ahbot config_file  use config_file as ahbot configuration file\n\r"
         #ifdef WIN32
         "    Running as service functions:\n\r"
         "    -s run                   run as service\n\r"
         "    -s install               install service\n\r"
         "    -s uninstall             uninstall service\n\r"
-        "    -m MangChat_config       use Mangchat_config as configuration file for MangChat\n\r"
         #else
         "    Running as daemon functions:\n\r"
         "    -s run                   run as daemon\n\r"
@@ -86,7 +86,7 @@ extern int main(int argc, char **argv)
     char const* cfg_file = _MANGOSD_CONFIG;
     char const* mc_cfg_file = _MANGCHAT_CONFIG;
 
-    char const *options = ":c:m:s:";
+    char const *options = ":a:c:m:s:";
 
     ACE_Get_Opt cmd_opts(argc, argv, options);
     cmd_opts.long_option("version", 'v', ACE_Get_Opt::NO_ARG);
