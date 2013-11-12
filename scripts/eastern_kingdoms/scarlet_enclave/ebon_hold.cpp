@@ -560,7 +560,7 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
         m_uiPlagueStrike_Timer = 5000;
     }
 
-    void AttackedBy(Unit* pAttacker) override
+    /*void AttackedBy(Unit* pAttacker) override
     {
         if (m_creature->getVictim())
             return;
@@ -569,7 +569,7 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
             return;
 
         AttackStart(pAttacker);
-    }
+    }*/
 
     void SpellHit(Unit* pCaster, const SpellEntry* pSpell) override
     {
@@ -580,21 +580,29 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
         }
     }
 
-    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) override
+    void DamageTaken(Unit* pDoneBy, uint32& uiDamage) /*override*/
     {
         if (m_bIsDuelInProgress && uiDamage > m_creature->GetHealth())
         {
-            uiDamage = 10;
+            uiDamage = 0;
 
             if (Player* pPlayer = m_creature->GetMap()->GetPlayer(m_duelerGuid))
                 m_creature->CastSpell(pPlayer, SPELL_DUEL_VICTORY, true);
+
+            m_creature->CombatStop(true);
+
+            if (m_creature->isAlive() && m_creature->getVictim()==pDoneBy)
+            {
+                m_creature->RemoveUnitFromHostileRefManager(pDoneBy);
+                debug_log("SD2: Deleting %s from DeathKnight's threatlist", pDoneBy->GetName()); 
+            }
 
             // possibly not evade, but instead have end sequenze
             EnterEvadeMode();
         }
     }
 
-    void UpdateAI(const uint32 uiDiff) override
+    void UpdateAI(const uint32 uiDiff) /* override */
     {
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
         {
@@ -690,7 +698,7 @@ bool GossipSelect_npc_death_knight_initiate(Player* pPlayer, Creature* pCreature
 /*######
 ## npc_koltira_deathweaver
 ######*/
-
+ 
 enum eKoltira
 {
     SAY_BREAKOUT1                   = -1609079,
@@ -1152,7 +1160,7 @@ enum eEyeOfAcherus
     SPELL_EYE_CONTROL       = 51852,
 
     TEXT_EYE_UNDER_CONTROL  = -1609090,
-    TEXT_EYE_LAUNCHED       = -1609089
+    TEXT_EYE_LAUNCHED       = -1609089,
 };
 
 struct MANGOS_DLL_DECL npc_eye_of_acherusAI : public ScriptedAI
