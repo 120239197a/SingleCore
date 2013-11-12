@@ -547,6 +547,9 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
     uint32 m_uiIcyTouch_Timer;
     uint32 m_uiPlagueStrike_Timer;
 
+    bool m_bPhase;
+    uint32 m_uiPhaseTimer;
+
     void Reset()
     {
         m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_UNK_15);
@@ -558,18 +561,10 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
         m_uiDeathCoil_Timer = 6000;
         m_uiIcyTouch_Timer = 2000;
         m_uiPlagueStrike_Timer = 5000;
+
+        m_bPhase = false;
+        m_uiPhaseTimer = 1000;
     }
-
-    /*void AttackedBy(Unit* pAttacker) override
-    {
-        if (m_creature->getVictim())
-            return;
-
-        if (m_creature->IsFriendlyTo(pAttacker))
-            return;
-
-        AttackStart(pAttacker);
-    }*/
 
     void SpellHit(Unit* pCaster, const SpellEntry* pSpell) override
     {
@@ -582,35 +577,49 @@ struct MANGOS_DLL_DECL npc_death_knight_initiateAI : public ScriptedAI
 
     void DamageTaken(Unit* pDoneBy, uint32& uiDamage) /*override*/
     {
-        if (m_bIsDuelInProgress && uiDamage > m_creature->GetHealth())
+        if (m_bIsDuelInProgress && uiDamage > m_creature->GetHealth() || ((m_creature->GetHealth() - uiDamage) * 100 / m_creature->GetMaxHealth() < 10))
         {
             uiDamage = 0;
 
+            m_creature->CombatStop(true);
+
+             m_bPhase = true;
+
             if (Player* pPlayer = m_creature->GetMap()->GetPlayer(m_duelerGuid))
                 m_creature->CastSpell(pPlayer, SPELL_DUEL_VICTORY, true);
-
-            m_creature->CombatStop(true);
 
             if (m_creature->isAlive() && m_creature->getVictim()==pDoneBy)
             {
                 m_creature->RemoveUnitFromHostileRefManager(pDoneBy);
                 debug_log("SD2: Deleting %s from DeathKnight's threatlist", pDoneBy->GetName()); 
             }
-
-            // possibly not evade, but instead have end sequenze
-            EnterEvadeMode();
         }
     }
 
     void UpdateAI(const uint32 uiDiff) /* override */
     {
+        if (!m_bPhase)
+        {
+            if (m_uiPhaseTimer < uiDiff)
+                m_uiPhaseTimer = 1000;
+            else
+            {
+                m_uiPhaseTimer -= uiDiff;
+                return;
+            }
+        }
+        else
+        {
+            EnterEvadeMode();
+        }
+
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
         {
             if (m_bIsDuelInProgress)
             {
                 if (m_uiDuelTimer < uiDiff)
                 {
-                    m_creature->SetFactionTemporary(FACTION_HOSTILE, TEMPFACTION_RESTORE_COMBAT_STOP | TEMPFACTION_RESTORE_RESPAWN);
+                    m_creature->SetFactionTemporary(FACTION_HOSTILE, TEMPFACTION_RESTORE_COMBAT_STOP | TEMPFACTION_TOGGLE_NON_ATTACKABLE);
 
                     if (Player* pPlayer = m_creature->GetMap()->GetPlayer(m_duelerGuid))
                         AttackStart(pPlayer);
@@ -878,7 +887,7 @@ bool QuestAccept_npc_koltira_deathweaver(Player* pPlayer, Creature* pCreature, c
 }
 
 /*######
-##
+## npc_unworthy_initiate_anchor
 ######*/
 
 enum
@@ -904,10 +913,6 @@ enum
     PHASE_DRESSUP                   = 1,
     PHASE_ACTIVATE                  = 2
 };
-
-/*######
-## npc_unworthy_initiate_anchor
-######*/
 
 struct MANGOS_DLL_DECL npc_unworthy_initiate_anchorAI : public ScriptedAI
 {
@@ -1160,7 +1165,7 @@ enum eEyeOfAcherus
     SPELL_EYE_CONTROL       = 51852,
 
     TEXT_EYE_UNDER_CONTROL  = -1609090,
-    TEXT_EYE_LAUNCHED       = -1609089,
+    TEXT_EYE_LAUNCHED       = -1609089
 };
 
 struct MANGOS_DLL_DECL npc_eye_of_acherusAI : public ScriptedAI
