@@ -1,12 +1,157 @@
--- Race Faction Change - Items
+-- Player race/faction change tables
 
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `player_factionchange_items`
--- ----------------------------
-DROP TABLE IF EXISTS `player_factionchange_items`;
+CREATE TABLE IF NOT EXISTS `player_factionchange_quests` (
+    `alliance_id` int(8) NOT NULL,
+    `commentA` varchar(255) DEFAULT NULL,
+    `horde_id` int(8) NOT NULL,
+    `commentH` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`alliance_id`, `horde_id`)
+) DEFAULT CHARSET=UTF8;
 
-CREATE TABLE `player_factionchange_items` (
+-- ----------------------------
+-- Records of player_factionchange_quests
+-- ----------------------------
+INSERT INTO player_factionchange_quests VALUES (12742, 'A Special Surprise(A)', 12739, 'A Special Surprise(H)');
+INSERT INTO player_factionchange_quests VALUES (12743, 'A Special Surprise(A)', 12747, 'A Special Surprise(H)');
+INSERT INTO player_factionchange_quests VALUES (12744, 'A Special Surprise(A)', 12748, 'A Special Surprise(H)');
+INSERT INTO player_factionchange_quests VALUES (12745, 'A Special Surprise(A)', 12749, 'A Special Surprise(H)');
+INSERT INTO player_factionchange_quests VALUES (12746, 'A Special Surprise(A)', 12750, 'A Special Surprise(H)');
+-- INSERT INTO player_factionchange_quests VALUES (28649, 'A Special Surprise(A)', 28650, 'A Special Surprise(H)'); Uncomment on Cataclysm
+INSERT INTO player_factionchange_quests VALUES (13188, 'Where Kings Walk', 13189, 'Warchief''s Blessing');
+
+
+CREATE TABLE IF NOT EXISTS `player_factionchange_achievements` (
+    `alliance_id` int(8) NOT NULL,
+    `horde_id` int(8) NOT NULL,
+    `CommentA` varchar(255) NOT NULL,
+    `CommentH` varchar(255) NOT NULL,
+    PRIMARY KEY (`alliance_id`,`horde_id`)
+) DEFAULT CHARSET=UTF8;
+
+-- ----------------------------
+-- Records of player_factionchange_achievements
+-- ----------------------------
+INSERT INTO `player_factionchange_achievements` VALUES ('33', '1358', 'Complete 130 quests in Borean Tundra', 'Complete 150 quests in Borean Tundra');
+INSERT INTO `player_factionchange_achievements` VALUES ('34', '1356', 'Complete 130 quests in Howling Fjord', 'Complete 105 quests in Howling Fjord');
+INSERT INTO `player_factionchange_achievements` VALUES ('35', '1359', 'Complete 115 quests in Dragonblight', 'Complete 130 quests in Dragonblight');
+INSERT INTO `player_factionchange_achievements` VALUES ('37', '1357', 'Complete 85 quests in Grizzly Hills', 'Complete 75 quests in Grizzly Hills');
+INSERT INTO `player_factionchange_achievements` VALUES ('41', '1360', 'Complete the Northrend quest achievements listed below.', 'Complete the Northrend quest achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('202', '1502', 'Grab the flag and capture it in under 75 seconds.', 'Grab the flag and capture it in under 75 seconds.');
+INSERT INTO `player_factionchange_achievements` VALUES ('203', '1251', 'In a single Warsong Gulch battle, kill 2 flag carriers before they leave the Silverwing Flag Room', 'In a single Warsong Gulch battle, kill 2 flag carriers before they leave the Warsong Flag Room');
+INSERT INTO `player_factionchange_achievements` VALUES ('206', '1252', 'Kill 100 flag carriers in Warsong Gulch.', 'Kill 100 flag carriers in Warsong Gulch.');
+INSERT INTO `player_factionchange_achievements` VALUES ('220', '873', 'Win Alterac Valley without losing a tower or captain. You must also control all of the Horde\'s towers', 'Win Alterac Valley without losing a tower or captain. You must also control all of the Alliance\'s towers');
+INSERT INTO `player_factionchange_achievements` VALUES ('225', '1164', 'Win Alterac Valley while your team controls both mines.', 'Win Alterac Valley while your team controls both mines.');
+INSERT INTO `player_factionchange_achievements` VALUES ('230', '1175', 'Complete the battleground achievements listed below.', 'Complete the battleground achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('246', '1005', 'Get an honorable, killing blow on six different races.', 'Get an honorable, killing blow on six different races.');
+INSERT INTO `player_factionchange_achievements` VALUES ('388', '1006', 'Kill 50 enemy players in any of your home cities.', 'Kill 50 enemy players in any of your home cities.');
+INSERT INTO `player_factionchange_achievements` VALUES ('433', '443', 'Earned the title, Grand Marshal', 'Earned the title, High Warlord');
+INSERT INTO `player_factionchange_achievements` VALUES ('434', '445', 'Earned the title, Field Marshal', 'Earned the title, Warlord');
+INSERT INTO `player_factionchange_achievements` VALUES ('435', '444', 'Earned the title, Commander', 'Earned the title, Lieutenant General');
+INSERT INTO `player_factionchange_achievements` VALUES ('436', '447', 'Earned the title, Lieutenant Commander', 'Earned the title, Champion');
+INSERT INTO `player_factionchange_achievements` VALUES ('437', '448', 'Earned the title, Knight-Champion', 'Earned the title, Centurion');
+INSERT INTO `player_factionchange_achievements` VALUES ('438', '469', 'Earned the title, Knight-Captain', 'Earned the title, Legionnaire');
+INSERT INTO `player_factionchange_achievements` VALUES ('439', '451', 'Earned the title, Knight', 'Earned the title, Stone Guard');
+INSERT INTO `player_factionchange_achievements` VALUES ('440', '452', 'Earned the title, Sergeant Major', 'Earned the title, First Sergeant');
+INSERT INTO `player_factionchange_achievements` VALUES ('441', '450', 'Earned the title, Master Sergeant', 'Earned the title, Senior Sergeant');
+INSERT INTO `player_factionchange_achievements` VALUES ('442', '454', 'Earned the title, Private', 'Earned the title, Scout');
+INSERT INTO `player_factionchange_achievements` VALUES ('470', '468', 'Earned the title, Corporal', 'Earned the title, Grunt');
+INSERT INTO `player_factionchange_achievements` VALUES ('471', '453', 'Earned the title, Sergeant', 'Earned the title, Sergeant');
+INSERT INTO `player_factionchange_achievements` VALUES ('472', '449', 'Earned the title, Knight-Lieutenant', 'Earned the title, Blood Guard');
+INSERT INTO `player_factionchange_achievements` VALUES ('473', '446', 'Earned the title, Marshal', 'Earned the title, General');
+INSERT INTO `player_factionchange_achievements` VALUES ('604', '603', 'Kill 5 Horde players in each of the cities listed below', 'Kill 5 Alliance players in each of the cities listed below');
+INSERT INTO `player_factionchange_achievements` VALUES ('610', '615', 'Kill Thrall', 'Kill King Varian Wrynn');
+INSERT INTO `player_factionchange_achievements` VALUES ('611', '616', 'Kill Cairne Bloodhoof', 'Kill King Magni Bronzebeard');
+INSERT INTO `player_factionchange_achievements` VALUES ('612', '617', 'Kill Lady Sylvanas Windrunner', 'Kill High Priestess Tyrande Whisperwind');
+INSERT INTO `player_factionchange_achievements` VALUES ('613', '618', 'Kill Lor\'themar Theron', 'Kill Prophet Velen');
+INSERT INTO `player_factionchange_achievements` VALUES ('614', '619', 'Slay the leaders of the Horde', 'Slay the leaders of the Alliance');
+INSERT INTO `player_factionchange_achievements` VALUES ('701', '700', 'Obtain an Insignia or Medallion of the Alliance', 'Obtain an Insignia or Medallion of the Horde');
+INSERT INTO `player_factionchange_achievements` VALUES ('707', '706', 'Obtain a Stormpike Battle Charger', 'Obtain a Frostwolf Howler');
+INSERT INTO `player_factionchange_achievements` VALUES ('709', '708', 'Gain exalted reputation with the Stormpike Guard', 'Gain exalted reputation with the Frostwolf Clan');
+INSERT INTO `player_factionchange_achievements` VALUES ('711', '710', 'Gain exalted reputation with The League of Arathor', 'Gain exalted reputation with The Forsaken Defilers');
+INSERT INTO `player_factionchange_achievements` VALUES ('713', '712', 'Gain exalted reputation with the Silverwing Sentinels', 'Gain exalted reputation with the Warsong Outriders');
+INSERT INTO `player_factionchange_achievements` VALUES ('764', '763', 'Raise all of The Burning Crusade dungeon reputations to exalted.', 'Raise all of The Burning Crusade dungeon reputations to exalted.');
+INSERT INTO `player_factionchange_achievements` VALUES ('899', '901', 'Earn exalted status with the Kurenai', 'Earn exalted status with The Mag\'har');
+INSERT INTO `player_factionchange_achievements` VALUES ('907', '714', 'Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted.', 'Raise your reputation values in Warsong Gulch, Arathi Basin and Alterac Valley to Exalted.');
+INSERT INTO `player_factionchange_achievements` VALUES ('908', '909', 'Complete 100 battlegrounds at max level.', 'Complete 100 battlegrounds at max level.');
+INSERT INTO `player_factionchange_achievements` VALUES ('942', '943', 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and the Kurenai', 'Raise your reputation level from unfriendly to exalted with Timbermaw Hold, Sporeggar and The Mag\'har');
+INSERT INTO `player_factionchange_achievements` VALUES ('948', '762', 'Earn Exalted reputation with all six Alliance factions.', 'Earn Exalted reputation with all six Horde factions.');
+INSERT INTO `player_factionchange_achievements` VALUES ('963', '965', 'Visit the Candy Buckets in Kalimdor.', 'Visit the Candy Buckets in Kalimdor.');
+INSERT INTO `player_factionchange_achievements` VALUES ('966', '967', 'Visit the Candy Buckets in Eastern Kingdoms.', 'Visit the Candy Buckets in Eastern Kingdoms.');
+INSERT INTO `player_factionchange_achievements` VALUES ('969', '968', 'Visit the Candy Buckets in Outland.', 'Visit the Candy Buckets in Outland.');
+INSERT INTO `player_factionchange_achievements` VALUES ('970', '971', 'Complete the Kalimdor, Eastern Kingdoms and Outland Tricks and Treats achievements.', 'Complete the Kalimdor, Eastern Kingdoms and Outland Tricks and Treats achievements.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1012', '1011', 'Gain exalted reputation with the Alliance Vanguard', 'Gain exalted reputation with the Horde Expedition');
+INSERT INTO `player_factionchange_achievements` VALUES ('1022', '1025', 'Honor the flames of Eastern Kingdoms.', 'Honor the flames of Eastern Kingdoms.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1023', '1026', 'Honor the flames of Kalimdor.', 'Honor the flames of Kalimdor.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1024', '1027', 'Honor the flames of Outland.', 'Honor the flames of Outland.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1028', '1031', 'Desecrate the Horde\'s bonfires in Eastern Kingdoms', 'Desecrate the Alliance\'s bonfires in Eastern Kingdoms');
+INSERT INTO `player_factionchange_achievements` VALUES ('1029', '1032', 'Desecrate the Horde\'s bonfires in Kalimdor', 'Desecrate the Alliance\'s bonfires in Kalimdor');
+INSERT INTO `player_factionchange_achievements` VALUES ('1030', '1033', 'Desecrate the Horde\'s bonfires in Outland', 'Desecrate the Alliance\'s bonfires in Outland');
+INSERT INTO `player_factionchange_achievements` VALUES ('1034', '1036', 'Complete the Flame Warden of Eastern Kingdoms, Kalimdor and Outland achievements', 'Complete the Flame Keeper of Eastern Kingdoms, Kalimdor and Outland achievements');
+INSERT INTO `player_factionchange_achievements` VALUES ('1035', '1037', 'Complete the Extinguishing Eastern Kingdoms, Kalimdor and Outland achievements.', 'Complete the Extinguishing Eastern Kingdoms, Kalimdor and Outland achievements.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1038', '1039', 'Complete the Midsummer achievements listed below.', 'Complete the Midsummer achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1040', '1041', 'Ruin Hallow\'s End for the Horde by completing Sergeant Hartman\'s quests which involve crashing the wickerman festival and cleaning up the stinkbombs from Southshore', 'Ruin Hallow\'s End for the Alliance by completing Darkcaller Yanka\'s quests which involve going to Southshore, ruining the kegs with rotten eggs and tossing stinkbombs into the town');
+INSERT INTO `player_factionchange_achievements` VALUES ('1151', '224', 'In Alterac Valley, kill 50 enemy players in the Hall of the Stormpike', 'In Alterac Valley, kill 50 enemy players in the Hall of the Frostwolf');
+INSERT INTO `player_factionchange_achievements` VALUES ('1167', '1168', 'Complete the Alterac Valley achievements listed below.', 'Complete the Alterac Valley achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1169', '1170', 'Complete the Arathi Basin achievements listed below.', 'Complete the Arathi Basin achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1172', '1173', 'Complete the Warsong Gulch achievements listed below.', 'Complete the Warsong Gulch achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1184', '1203', 'Drink the Brewfest beers listed below.', 'Drink the Brewfest beers listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1189', '1271', 'Complete 80 quests in Hellfire Peninsula', 'Complete 90 quests in Hellfire Peninsula');
+INSERT INTO `player_factionchange_achievements` VALUES ('1191', '1272', 'Complete 63 quests in Terokkar Forest', 'Complete 68 quests in Terokkar Forest');
+INSERT INTO `player_factionchange_achievements` VALUES ('1192', '1273', 'Complete 75 quests in Nagrand', 'Complete 87 quests in Nagrand');
+INSERT INTO `player_factionchange_achievements` VALUES ('1262', '1274', 'Complete the Outland quest achievements listed below.', 'Complete the Outland quest achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1255', '259', 'Throw a snowball at King Magni Bronzebeard during the Feast of Winter Veil', 'Throw a snowball at Cairne Bloodhoof during the Feast of Winter Veil');
+INSERT INTO `player_factionchange_achievements` VALUES ('1279', '1280', 'Get completely smashed, put on your best perfume, throw a handful of rose petals on Sraaz and then kiss him. You\'ll regret it in the morning', 'Get completely smashed, put on your best perfume, throw a handful of rose petals on Jeremiah Payson and then kiss him. You\'ll regret it in the morning');
+INSERT INTO `player_factionchange_achievements` VALUES ('1563', '1784', 'Complete the cooking achievements listed below.', 'Complete the cooking achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1656', '1657', 'Complete the Hallow\'s End achievements listed below.', 'Complete the Hallow\'s End achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1676', '1677', 'Complete 700 quests in Eastern Kingdoms', 'Complete 550 quests in Eastern Kingdoms');
+INSERT INTO `player_factionchange_achievements` VALUES ('1678', '1680', 'Complete 700 quests in Kalimdor', 'Complete 685 quests in Kalimdor');
+INSERT INTO `player_factionchange_achievements` VALUES ('1681', '1682', 'Complete the quest achievements listed below.', 'Complete the quest achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1684', '1683', 'Complete the Brewfest achievements listed below.', 'Complete the Brewfest achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1686', '1685', 'Use Mistletoe on the Alliance Brothers during the Feast of Winter Veil', 'Use Mistletoe on the Horde Brothers during the Feast of Winter Veil');
+INSERT INTO `player_factionchange_achievements` VALUES ('1692', '1691', 'Complete the Winter Veil achievements listed below.', 'Complete the Winter Veil achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1697', '1698', 'Complete the Lovely Charm Bracelet daily quest for each Alliance capital.', 'Complete the Lovely Charm Bracelet daily quest for each Horde capital.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1707', '1693', 'Complete the Love is in the Air achievements listed below.', 'Complete the Love is in the Air achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1737', '2476', 'Destroy each of the vehicles listed below.', 'Destroy each of the vehicles listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1752', '2776', 'Complete the Wintergrasp achievements listed below.', 'Complete the Wintergrasp achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1757', '2200', 'Defend the beach without losing any walls.', 'Defend the beach without losing any walls.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1762', '2192', 'Win a Strand of the Ancients battle without losing any siege vehicles.', 'Win a Strand of the Ancients battle without losing any siege vehicles.');
+INSERT INTO `player_factionchange_achievements` VALUES ('1782', '1783', 'Complete each of the cooking daily quests offered by Katherine Lee in Dalaran', 'Complete each of the cooking daily quests offered by Awilo Lon\'gomba in Dalaran');
+INSERT INTO `player_factionchange_achievements` VALUES ('2016', '2017', 'Complete the Grizzly Hills PvP daily quests listed below.', 'Complete the Grizzly Hills PvP daily quests listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2144', '2145', 'Complete the world events achievements listed below.', 'Complete the world events achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2194', '2195', 'Complete the Strand of the Ancients achievements listed below.', 'Complete the Strand of the Ancients achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2419', '2497', 'Find your pet Spring Rabbit another one to love in each of the towns listed below.', 'Find your pet Spring Rabbit another one to love in each of the towns listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2421', '2420', 'Hide a Brightly Colored Egg in Stormwind City', 'Hide a Brightly Colored Egg in Silvermoon City');
+INSERT INTO `player_factionchange_achievements` VALUES ('2536', '2537', 'Obtain 100 mounts.', 'Obtain 100 mounts.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2760', '2769', 'Earn exalted status with and the right to represent Darnassus in the Argent Tournament.', 'Earn exalted status with and the right to represent the Undercity in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2761', '2767', 'Earn exalted status with and the right to represent the Exodar in the Argent Tournament.', 'Earn exalted status with and the right to represent Silvermoon City in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2762', '2768', 'Earn exalted status with and the right to represent the Gnomeregan Exiles in the Argent Tournament.', 'Earn exalted status with and the right to represent Thunder Bluff in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2763', '2766', 'Earn exalted status with and the right to represent Ironforge in the Argent Tournament.', 'Earn exalted status with and the right to represent Sen\'jin in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2764', '2765', 'Earn exalted status with and the right to represent Stormwind in the Argent Tournament.', 'Earn exalted status with and the right to represent Orgrimmar in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2770', '2771', 'Earn exalted status with and the right to represent every Alliance race\'s faction in the Argent Tournament.', 'Earn exalted status with and the right to represent every Horde race\'s faction in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2777', '2787', 'Earn the right to represent Darnassus in the Argent Tournament.', 'Earn the right to represent the Undercity in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2778', '2785', 'Earn the right to represent the Exodar in the Argent Tournament.', 'Earn the right to represent Silvermoon City in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2779', '2786', 'Earn the right to represent the Gnomeregan Exiles in the Argent Tournament.', 'Earn the right to represent Thunder Bluff in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2780', '2784', 'Earn the right to represent Ironforge in the Argent Tournament.', 'Earn the right to represent Sen\'jin in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2781', '2783', 'Earn the right to represent Stormwind in the Argent Tournament.', 'Earn the right to represent Orgrimmar in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2782', '2788', 'Earn the right to represent every Alliance race\'s faction in the Argent Tournament.', 'Earn the right to represent every Horde race\'s faction in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2797', '2798', 'Complete the Noblegarden achievements listed below.', 'Complete the Noblegarden achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('2817', '2816', 'Earn exalted status with and the right to represent every Alliance race\'s faction in the Argent Tournament.', 'Earn exalted status with and the right to represent every Horde race\'s faction in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3478', '3656', 'Complete the Pilgrim\'s Bounty achievements listed below.', 'Complete the Pilgrim\'s Bounty achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3556', '3557', 'Acquire the Spirit of Sharing from a complete Bountiful Table feast at every Alliance capital', 'Acquire the Spirit of Sharing from a complete Bountiful Table feast at every Horde capital');
+INSERT INTO `player_factionchange_achievements` VALUES ('3576', '3577', 'Cook up one of every Pilgrim\'s Bounty dish.', 'Cook up one of every Pilgrim\'s Bounty dish.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3580', '3581', 'While wearing either a Pilgrim\'s Dress, Robe, or Attire, take a seat at each enemy capital\'s Bountiful Table.', 'While wearing either a Pilgrim\'s Dress, Robe, or Attire, take a seat at each enemy capital\'s Bountiful Table.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3596', '3597', 'Complete each of the Pilgrim\'s Bounty dailies.', 'Complete each of the Pilgrim\'s Bounty dailies.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3676', '3677', 'Earn both exalted status with The Silver Covenant and the right to represent a city in the Argent Tournament.', 'Earn both exalted status with The Sunreavers and the right to represent a city in the Argent Tournament.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3846', '4176', 'Win Isle of Conquest while your team controls the Quarry and Oil Refinery.', 'Win Isle of Conquest while your team controls the Quarry and Oil Refinery.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3851', '4177', 'Win Isle of Conquest while controlling the Quarry, Oil Refinery, Shipyard, Siege Workshop and Hangar.', 'Win Isle of Conquest while controlling the Quarry, Oil Refinery, Shipyard, Siege Workshop and Hangar.');
+INSERT INTO `player_factionchange_achievements` VALUES ('3856', '4256', 'Destroy the following vehicles in Isle of Conquest', 'Destroy the following vehicles in Isle of Conquest');
+INSERT INTO `player_factionchange_achievements` VALUES ('3857', '3957', 'Complete the Isle of Conquest achievements listed below.', 'Complete the Isle of Conquest achievements listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('4156', '4079', 'In the Trial of the Grand Crusader, reach a Tribute Chest with 50 attempts remaining and without allowing any raid member to die during any of the boss encounters in 25-player mode.', 'In the Trial of the Grand Crusader, reach a Tribute Chest with 50 attempts remaining and without allowing any raid member to die during any of the boss encounters in 25-player mode.');
+INSERT INTO `player_factionchange_achievements` VALUES ('4436', '4437', 'Pelt the enemy leaders listed below.', 'Pelt the enemy leaders listed below.');
+INSERT INTO `player_factionchange_achievements` VALUES ('4786', '4790', 'You assisted High Tinker Mekkatorque and the Gnomeregan Exiles in the recapture of Gnomeregan\'s surface.', 'You assisted High Tinker Mekkatorque and the Gnomeregan Exiles in the recapture of Gnomeregan\'s surface.');
+INSERT INTO `player_factionchange_achievements` VALUES ('5332', '5347', 'Earn a battleground rating of 1300', 'Earn a battleground rating of 1300');
+
+CREATE TABLE IF NOT EXISTS `player_factionchange_items` (
     `race_A` int(8) NOT NULL DEFAULT '0',
     `alliance_id` int(8) NOT NULL,
     `commentA` varchar(255) DEFAULT NULL,
@@ -751,3 +896,926 @@ INSERT IGNORE INTO `player_factionchange_items` (`race_A`, `alliance_id`, `comme
 (0, 48074, 'Velen\'s Pants of Conquest',     0, 48099, 'Zabra\'s Pants of Conquest'),
 (0, 48075, 'Velen\'s Raiments of Conquest',  0, 48100, 'Zabra\'s Raiments of Conquest'),
 (0, 48076, 'Velen\'s Mantle of Conquest',    0, 48101, 'Zabra\'s Mantle of Conquest');
+
+CREATE TABLE IF NOT EXISTS `player_factionchange_reputations` (
+    `race_A` int(8) NOT NULL DEFAULT '0',
+    `alliance_id` int(8) NOT NULL,
+    `commentA` varchar(255) DEFAULT NULL,
+    `race_H` int(8) NOT NULL DEFAULT '0',
+    `horde_id` int(8) NOT NULL,
+    `commentH` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`alliance_id`,`horde_id`)
+) DEFAULT CHARSET=UTF8;
+
+-- ----------------------------
+-- Records of player_factionchange_reputations
+-- ----------------------------
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '47', 'Ironforge', '0', '530', 'Darkspear Trolls');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '509', 'The League of Arathor', '0', '510', 'The Defilers');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '730', 'Stormpike Guard', '0', '729', 'Frostwolf Clan');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '890', 'Silverwing Sentinels', '0', '889', 'Warsong Outriders');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '946', 'Honor Hold', '0', '947', 'Thrallmar');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '978', 'Kurenai', '0', '941', 'The Mag\'har');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '1037', 'Alliance Vanguard', '0', '1052', 'Horde Expedition');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '1050', 'Valiance Expedition', '0', '1085', 'Warsong Offensive');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '1068', 'Explorers\' League', '0', '1064', 'The Taunka');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '1126', 'The Frostborn', '0', '1067', 'The Hand of Vengeance');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '54', 'Gnomeregan Exiles', '0', '81', 'Thunder Bluff');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '69', 'Darnassus', '0', '68', 'Undercity');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '72', 'Stormwind', '0', '76', 'Orgrimmar');
+INSERT INTO `player_factionchange_reputations` VALUES ('0', '930', 'Exodar', '0', '911', 'Silvermoon City');
+
+CREATE TABLE IF NOT EXISTS  `player_factionchange_spells` (
+    `race_A` int(8) NOT NULL DEFAULT '0',
+    `alliance_id` int(8) NOT NULL,
+    `commentA` varchar(255) DEFAULT NULL,
+    `race_H` int(8) NOT NULL DEFAULT '0',
+    `horde_id` int(8) NOT NULL,
+    `commentH` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`race_A`,`alliance_id`,`race_H`,`horde_id`)
+) DEFAULT CHARSET=UTF8;
+
+-- ----------------------------
+-- Records of player_factionchange_spells
+-- ----------------------------
+
+INSERT INTO `player_factionchange_spells` (`race_A`, `alliance_id`, `commentA`, `race_H`, `horde_id`, `commentH`) VALUES
+(0, 458, 'Brown Horse', 0, 6654, 'Brown Wolf'),
+(0, 470, 'Black Stallion', 0, 64658, 'Black Wolf'),
+(0, 472, 'Pinto', 0, 580, 'Timber Wolf'),
+(0, 3561, 'Teleport: Stormwind', 0, 3567, 'Teleport: Orgrimmar'),
+(0, 3562, 'Teleport: Ironforge', 0, 3563, 'Teleport: Undercity'),
+(0, 3565, 'Teleport: Darnassus', 0, 3566, 'Teleport: Thunder Bluff'),
+(0, 6648, 'Chestnut Mare', 0, 6653, 'Dire Wolf'),
+(0, 6777, 'Gray Ram', 0, 8395, 'Emerald Raptor'),
+(0, 6898, 'White Ram', 0, 10796, 'Turquoise Raptor'),
+(0, 6899, 'Brown Ram', 0, 10799, 'Violet Raptor'),
+(0, 8394, 'Striped Frostsaber', 0, 64977, 'Black Skeletal Horse'),
+(0, 10059, 'Portal: Stormwind', 0, 11417, 'Portal: Orgrimmar'),
+(0, 10789, 'Spotted Frostsaber', 0, 17464, 'Brown Skeletal Horse'),
+(0, 10793, 'Striped Nightsaber', 0, 17463, 'Blue Skeletal Horse'),
+(0, 10873, 'Red Mechanostrider', 0, 64657, 'White Kodo'),
+(0, 10969, 'Blue Mechanostrider', 0, 18990, 'Brown Kodo'),
+(0, 11416, 'Portal: Ironforge', 0, 11418, 'Portal: Undercity'),
+(0, 11419, 'Portal: Darnassus', 0, 11420, 'Portal: Thunder Bluff'),
+(0, 13819, 'Warhorse', 0, 34769, 'Summon Warhorse'),
+(0, 15779, 'White Mechanostrider Mod B', 0, 18992, 'Teal Kodo'),
+(0, 16082, 'Palomino', 0, 16080, 'Red Wolf'),
+(0, 16083, 'White Stallion', 0, 16081, 'Winter Wolf'),
+(0, 17229, 'Winterspring Frostsaber', 0, 64659, 'Venomhide Ravasaur'),
+(0, 17453, 'Green Mechanostrider', 0, 18989, 'Gray Kodo'),
+(0, 17459, 'Icy Blue Mechanostrider Mod A', 0, 18991, 'Green Kodo'),
+(0, 17460, 'Frost Ram', 0, 17450, 'Ivory Raptor'),
+(0, 17461, 'Black Ram', 0, 16084, 'Mottled Red Raptor'),
+(0, 22717, 'Black War Steed', 0, 22724, 'Black War Wolf'),
+(0, 22718, 'Black War Kodo', 0, 22719, 'Black Battlestrider'),
+(0, 22719, 'Black Battlestrider', 0, 22718, 'Black War Kodo'),
+(0, 22720, 'Black War Ram', 0, 22721, 'Black War Raptor'),
+(0, 22723, 'Black War Tiger', 0, 22722, 'Red Skeletal Warhorse'),
+(0, 23214, 'Charger', 0, 34767, 'Summon Charger'),
+(0, 23219, 'Swift Mistsaber', 0, 23246, 'Purple Skeletal Warhorse'),
+(0, 23221, 'Swift Frostsaber', 0, 66846, 'Ochre Skeletal Warhorse'),
+(0, 23222, 'Swift Yellow Mechanostrider', 0, 23247, 'Great White Kodo'),
+(0, 23223, 'Swift White Mechanostrider', 0, 23248, 'Great Gray Kodo'),
+(0, 23225, 'Swift Green Mechanostrider', 0, 23249, 'Great Brown Kodo'),
+(0, 23227, 'Swift Palomino', 0, 23251, 'Swift Timber Wolf'),
+(0, 23228, 'Swift White Steed', 0, 23252, 'Swift Gray Wolf'),
+(0, 23229, 'Swift Brown Steed', 0, 23250, 'Swift Brown Wolf'),
+(0, 23238, 'Swift Brown Ram', 0, 23243, 'Swift Orange Raptor'),
+(0, 23239, 'Swift Gray Ram', 0, 23241, 'Swift Blue Raptor'),
+(0, 23240, 'Swift White Ram', 0, 23242, 'Swift Olive Raptor'),
+(0, 23338, 'Swift Stormsaber', 0, 17465, 'Green Skeletal Warhorse'),
+(0, 23510, 'Stormpike Battle Charger', 0, 23509, 'Frostwolf Howler'),
+(0, 31801, 'Seal of Vengeance', 0, 53736, 'Seal of Corruption'),
+(0, 32182, 'Heroism', 0, 2825, 'Bloodlust'),
+(0, 32235, 'Golden Gryphon', 0, 32245, 'Green Wind Rider'),
+(0, 32239, 'Ebon Gryphon', 0, 32243, 'Tawny Wind Rider'),
+(0, 32240, 'Snowy Gryphon', 0, 32244, 'Blue Wind Rider'),
+(0, 32242, 'Swift Blue Gryphon', 0, 32296, 'Swift Yellow Wind Rider'),
+(0, 32266, 'Portal: Exodar', 0, 32267, 'Portal: Silvermoon'),
+(0, 32271, 'Teleport: Exodar', 0, 32272, 'Teleport: Silvermoon'),
+(0, 32289, 'Swift Red Gryphon', 0, 32246, 'Swift Red Wind Rider'),
+(0, 32290, 'Swift Green Gryphon', 0, 32295, 'Swift Green Wind Rider'),
+(0, 32292, 'Swift Purple Gryphon', 0, 32297, 'Swift Purple Wind Rider'),
+(0, 33690, 'Teleport: Shattrath(A)', 0, 35715, 'Teleport: Shattrath(H)'),
+(0, 33691, 'Portal: Shattrath(A)', 0, 35717, 'Portal: Shattrath(H)'),
+(0, 34406, 'Brown Elekk', 0, 35022, 'Black Hawkstrider'),
+(0, 35710, 'Gray Elekk', 0, 35020, 'Blue Hawkstrider'),
+(0, 35711, 'Purple Elekk', 0, 34795, 'Red Hawkstrider'),
+(0, 35712, 'Great Green Elekk', 0, 35027, 'Swift Purple Hawkstrider'),
+(0, 35713, 'Great Blue Elekk', 0, 35025, 'Swift Green Hawkstrider'),
+(0, 35714, 'Great Purple Elekk', 0, 33660, 'Swift Pink Hawkstrider'),
+(0, 48027, 'Black War Elekk', 0, 35028, 'Swift Warstrider'),
+(0, 49359, 'Teleport: Theramore', 0, 49358, 'Teleport: Stonard'),
+(0, 49360, 'Portal: Theramore', 0, 40361, 'Portal: Stonard'),
+(0, 60424, 'Mekgineer''s Chopper', 0, 55531, 'Mechano-hog'),
+(0, 61229, 'Armored Snowy Gryphon', 0, 61230, 'Armored Blue Wind Rider'),
+(0, 62609, 'Argent Squire', 0, 62746, 'Argent Gruntling'),
+(0, 62736, 'Stormwind Banner', 0, 62742, 'Orgrimmar Banner'),
+(0, 62737, 'Ironforge Banner', 0, 62738, 'Sen''jin Banner'),
+(0, 62739, 'Darnassus Banner', 0, 62743, 'Undercity Banner'),
+(0, 62740, 'Exodar Banner', 0, 62744, 'Silvermoon City Banner'),
+(0, 62741, 'Gnomeregan Banner', 0, 62745, 'Thunder Bluff Banner'),
+(0, 63232, 'Stormwind Steed', 0, 63640, 'Orgrimmar Wolf'),
+(0, 63636, 'Ironforge Ram', 0, 63635, 'Darkspear Raptor'),
+(0, 63637, 'Darnassian Nightsaber', 0, 63643, 'Forsaken Warhorse'),
+(0, 63638, 'Gnomeregan Mechanostrider', 0, 63641, 'Thunder Bluff Kodo'),
+(0, 63639, 'Exodar Elekk', 0, 63642, 'Silvermoon Hawkstrider'),
+(0, 63641, 'Thunder Bluff Kodo', 0, 63638, 'Gnomeregan Mechanostrider'),
+(0, 65637, 'Great Red Elekk', 0, 65639, 'Swift Red Hawkstrider'),
+(0, 65638, 'Swift Moonsaber', 0, 65645, 'White Skeletal Warhorse'),
+(0, 65640, 'Swift Gray Steed', 0, 65646, 'Swift Burgundy Wolf'),
+(0, 65641, 'Great Golden Kodo', 0, 65642, 'Turbostrider'),
+(0, 65642, 'Turbostrider', 0, 65641, 'Great Golden Kodo'),
+(0, 65643, 'Swift Violet Ram', 0, 65644, 'Swift Purple Raptor'),
+(0, 66087, 'Silver Covenant Hippogryph', 0, 66088, 'Sunreaver Dragonhawk'),
+(0, 66090, 'Quel''dorei Steed', 0, 66091, 'Sunreaver Hawkstrider'),
+(0, 66847, 'Striped Dawnsaber', 0, 17462, 'Red Skeletal Horse'),
+(0, 67064, 'Pattern: Royal Moonshroud Robe', 0, 67144, 'Pattern: Royal Moonshroud Robe'),
+(0, 67065, 'Pattern: Royal Moonshroud Bracers', 0, 67147, 'Pattern: Royal Moonshroud Bracers'),
+(0, 67066, 'Pattern: Merlin''s Robe', 0, 67146, 'Pattern: Merlin''s Robe'),
+(0, 67079, 'Pattern: Bejeweled Wizard''s Bracers', 0, 67145, 'Pattern: Bejeweled Wizard''s Bracers'),
+(0, 67080, 'Pattern: Ensorcelled Nerubian Breastplate', 0, 67136, 'Pattern: Ensorcelled Nerubian Breastplate'),
+(0, 67081, 'Pattern: Black Chitin Bracers', 0, 67137, 'Pattern: Black Chitin Bracers'),
+(0, 67082, 'Pattern: Crusader''s Dragonscale Breastplate', 0, 67138, 'Pattern: Crusader''s Dragonscale Breastplate'),
+(0, 67083, 'Pattern: Crusader''s Dragonscale Bracers', 0, 67143, 'Pattern: Crusader''s Dragonscale Bracers'),
+(0, 67084, 'Pattern: Lunar Eclipse Chestguard', 0, 67140, 'Pattern: Lunar Eclipse Chestguard'),
+(0, 67085, 'Pattern: Moonshadow Armguards', 0, 67141, 'Pattern: Moonshadow Armguards'),
+(0, 67086, 'Pattern: Knightbane Carapace', 0, 67142, 'Pattern: Knightbane Carapace'),
+(0, 67087, 'Pattern: Bracers of Swift Death', 0, 67139, 'Pattern: Bracers of Swift Death'),
+(0, 67091, 'Plans: Breastplate of the White Knight', 0, 67130, 'Plans: Breastplate of the White Knight'),
+(0, 67092, 'Plans: Saronite Swordbreakers', 0, 67131, 'Plans: Saronite Swordbreakers'),
+(0, 67093, 'Plans: Titanium Razorplate', 0, 67132, 'Plans: Titanium Razorplate'),
+(0, 67094, 'Plans: Titanium Spikeguards', 0, 67133, 'Plans: Titanium Spikeguards'),
+(0, 67095, 'Plans: Sunforged Breastplate', 0, 67134, 'Plans: Sunforged Breastplate'),
+(0, 67096, 'Plans: Sunforged Bracers', 0, 67135, 'Plans: Sunforged Bracers'),
+(0, 68057, 'Swift Alliance Steed', 0, 68056, 'Swift Horde Wolf'),
+(0, 68187, 'Crusader''s White Warhorse', 0, 68188, 'Crusader''s Black Warhorse'),
+(0, 61425, 'Traveler\'s Tundra Mammoth', 0, 61447, 'Traveler\'s Tundra Mammoth'),
+(1, 458, 'Brown Horse', 3, 6899, 'Brown Ram'),
+(1, 458, 'Brown Horse', 4, 10793, 'Striped Nightsaber'),
+(1, 458, 'Brown Horse', 5, 17463, 'Blue Skeletal Horse'),
+(1, 458, 'Brown Horse', 6, 64657, 'White Kodo'),
+(1, 458, 'Brown Horse', 7, 10873, 'Red Mechanostrider'),
+(1, 458, 'Brown Horse', 8, 10799, 'Violet Raptor'),
+(1, 458, 'Brown Horse', 10, 34795, 'Red Hawkstrider'),
+(1, 458, 'Brown Horse', 11, 35711, 'Purple Elekk'),
+(1, 470, 'Black Stallion', 4, 66847, 'Striped Dawnsaber'),
+(1, 470, 'Black Stallion', 5, 17462, 'Red Skeletal Horse'),
+(1, 470, 'Black Stallion', 7, 17454, 'Unpainted Mechanostrider'),
+(1, 470, 'Black Stallion', 10, 35018, 'Purple Hawkstrider'),
+(1, 472, 'Pinto', 3, 6777, 'Gray Ram'),
+(1, 472, 'Pinto', 4, 8394, 'Striped Frostsaber'),
+(1, 472, 'Pinto', 5, 64977, 'Black Skeletal Horse'),
+(1, 472, 'Pinto', 6, 18990, 'Brown Kodo'),
+(1, 472, 'Pinto', 7, 10969, 'Blue Mechanostrider'),
+(1, 472, 'Pinto', 8, 8395, 'Emerald Raptor'),
+(1, 472, 'Pinto', 10, 35022, 'Black Hawkstrider'),
+(1, 472, 'Pinto', 11, 34406, 'Brown Elekk'),
+(1, 6648, 'Chestnut Mare', 3, 6898, 'White Ram'),
+(1, 6648, 'Chestnut Mare', 4, 10789, 'Spotted Frostsaber'),
+(1, 6648, 'Chestnut Mare', 5, 17464, 'Brown Skeletal Horse'),
+(1, 6648, 'Chestnut Mare', 6, 18989, 'Gray Kodo'),
+(1, 6648, 'Chestnut Mare', 7, 17453, 'Green Mechanostrider'),
+(1, 6648, 'Chestnut Mare', 8, 10796, 'Turquoise Raptor'),
+(1, 6648, 'Chestnut Mare', 10, 35020, 'Blue Hawkstrider'),
+(1, 6648, 'Chestnut Mare', 11, 35710, 'Gray Elekk'),
+(1, 6777, 'Gray Ram', 8, 580, 'Timber Wolf'),
+(1, 6898, 'White Ram', 8, 6653, 'Dire Wolf'),
+(1, 6899, 'Brown Ram', 8, 6654, 'Brown Wolf'),
+(1, 8394, 'Striped Frostsaber', 5, 580, 'Timber Wolf'),
+(1, 10789, 'Spotted Frostsaber', 5, 6653, 'Dire Wolf'),
+(1, 10793, 'Striped Nightsaber', 5, 6654, 'Brown Wolf'),
+(1, 10873, 'Red Mechanostrider', 6, 6654, 'Brown Wolf'),
+(1, 10969, 'Blue Mechanostrider', 6, 580, 'Timber Wolf'),
+(1, 15779, 'White Mechanostrider Mod B', 6, 16081, 'Winter Wolf'),
+(1, 16056, 'Ancient Frostsaber', 5, 16080, 'Red Wolf'),
+(1, 16082, 'Palomino', 6, 18991, 'Green Kodo'),
+(1, 16082, 'Palomino', 8, 16084, 'Mottled Red Raptor'),
+(1, 16083, 'White Stallion', 6, 18992, 'Teal Kodo'),
+(1, 16083, 'White Stallion', 8, 17450, 'Ivory Raptor'),
+(1, 17453, 'Green Mechanostrider', 6, 6653, 'Dire Wolf'),
+(1, 17454, 'Unpainted Mechanostrider', 6, 64658, 'Black Wolf'),
+(1, 17459, 'Icy Blue Mechanostrider Mod A', 6, 16080, 'Red Wolf'),
+(1, 17460, 'Frost Ram', 8, 16081, 'Winter Wolf'),
+(1, 17461, 'Black Ram', 8, 16080, 'Red Wolf'),
+(1, 22717, 'Black War Steed', 5, 22722, 'Red Skeletal Warhorse'),
+(1, 22717, 'Black War Steed', 6, 22718, 'Black War Kodo'),
+(1, 22717, 'Black War Steed', 8, 22721, 'Black War Raptor'),
+(1, 22717, 'Black War Steed', 10, 35028, 'Swift Warstrider'),
+(1, 22719, 'Black Battlestrider', 6, 22724, 'Black War Wolf'),
+(1, 22720, 'Black War Ram', 8, 22724, 'Black War Wolf'),
+(1, 22723, 'Black War Tiger', 5, 22724, 'Black War Wolf'),
+(1, 23219, 'Swift Mistsaber', 5, 23252, 'Swift Gray Wolf'),
+(1, 23221, 'Swift Frostsaber', 5, 23251, 'Swift Timber Wolf'),
+(1, 23222, 'Swift Yellow Mechanostrider', 6, 23251, 'Swift Timber Wolf'),
+(1, 23223, 'Swift White Mechanostrider', 6, 23252, 'Swift Gray Wolf'),
+(1, 23225, 'Swift Green Mechanostrider', 6, 23250, 'Swift Brown Wolf'),
+(1, 23227, 'Swift Palomino', 3, 23238, 'Swift Brown Ram'),
+(1, 23227, 'Swift Palomino', 4, 23221, 'Swift Frostsaber'),
+(1, 23227, 'Swift Palomino', 5, 66846, 'Ochre Skeletal Warhorse'),
+(1, 23227, 'Swift Palomino', 6, 23247, 'Great White Kodo'),
+(1, 23227, 'Swift Palomino', 7, 23222, 'Swift Yellow Mechanostrider'),
+(1, 23227, 'Swift Palomino', 8, 23243, 'Swift Orange Raptor'),
+(1, 23227, 'Swift Palomino', 10, 33660, 'Swift Pink Hawkstrider'),
+(1, 23227, 'Swift Palomino', 11, 35714, 'Great Purple Elekk'),
+(1, 23228, 'Swift White Steed', 3, 23240, 'Swift White Ram'),
+(1, 23228, 'Swift White Steed', 4, 23219, 'Swift Mistsaber'),
+(1, 23228, 'Swift White Steed', 5, 23246, 'Purple Skeletal Warhorse'),
+(1, 23228, 'Swift White Steed', 6, 23248, 'Great Gray Kodo'),
+(1, 23228, 'Swift White Steed', 7, 23223, 'Swift White Mechanostrider'),
+(1, 23228, 'Swift White Steed', 8, 23242, 'Swift Olive Raptor'),
+(1, 23228, 'Swift White Steed', 10, 35027, 'Swift Purple Hawkstrider'),
+(1, 23228, 'Swift White Steed', 11, 35712, 'Great Green Elekk'),
+(1, 23229, 'Swift Brown Steed', 3, 23239, 'Swift Gray Ram'),
+(1, 23229, 'Swift Brown Steed', 4, 23338, 'Swift Stormsaber'),
+(1, 23229, 'Swift Brown Steed', 5, 17465, 'Green Skeletal Warhorse'),
+(1, 23229, 'Swift Brown Steed', 6, 23249, 'Great Brown Kodo'),
+(1, 23229, 'Swift Brown Steed', 7, 23225, 'Swift Green Mechanostrider'),
+(1, 23229, 'Swift Brown Steed', 8, 23241, 'Swift Blue Raptor'),
+(1, 23229, 'Swift Brown Steed', 10, 35025, 'Swift Green Hawkstrider'),
+(1, 23229, 'Swift Brown Steed', 11, 35713, 'Great Blue Elekk'),
+(1, 23238, 'Swift Brown Ram', 8, 23251, 'Swift Timber Wolf'),
+(1, 23239, 'Swift Gray Ram', 8, 23250, 'Swift Brown Wolf'),
+(1, 23240, 'Swift White Ram', 8, 23252, 'Swift Gray Wolf'),
+(1, 23338, 'Swift Stormsaber', 5, 23250, 'Swift Brown Wolf'),
+(1, 34406, 'Brown Elekk', 10, 580, 'Timber Wolf'),
+(1, 35710, 'Gray Elekk', 10, 6653, 'Dire Wolf'),
+(1, 35711, 'Purple Elekk', 10, 6654, 'Brown Wolf'),
+(1, 35712, 'Great Green Elekk', 10, 23252, 'Swift Gray Wolf'),
+(1, 35713, 'Great Blue Elekk', 10, 23250, 'Swift Brown Wolf'),
+(1, 35714, 'Great Purple Elekk', 10, 23251, 'Swift Timber Wolf'),
+(1, 48027, 'Black War Elekk', 10, 22724, 'Black War Wolf'),
+(1, 63232, 'Stormwind Steed', 3, 63636, 'Ironforge Ram'),
+(1, 63232, 'Stormwind Steed', 4, 63637, 'Darnassian Nightsaber'),
+(1, 63232, 'Stormwind Steed', 5, 63643, 'Forsaken Warhorse'),
+(1, 63232, 'Stormwind Steed', 6, 63641, 'Thunder Bluff Kodo'),
+(1, 63232, 'Stormwind Steed', 7, 63638, 'Gnomeregan Mechanostrider'),
+(1, 63232, 'Stormwind Steed', 8, 63635, 'Darkspear Raptor'),
+(1, 63232, 'Stormwind Steed', 10, 63642, 'Silvermoon Hawkstrider'),
+(1, 63232, 'Stormwind Steed', 11, 63639, 'Exodar Elekk'),
+(1, 63636, 'Ironforge Ram', 8, 63640, 'Orgrimmar Wolf'),
+(1, 63637, 'Darnassian Nightsaber', 5, 63640, 'Orgrimmar Wolf'),
+(1, 63638, 'Gnomeregan Mechanostrider', 6, 63640, 'Orgrimmar Wolf'),
+(1, 63639, 'Exodar Elekk', 10, 63640, 'Orgrimmar Wolf'),
+(1, 65637, 'Great Red Elekk', 10, 65646, 'Swift Burgundy Wolf'),
+(1, 65638, 'Swift Moonsaber', 5, 65646, 'Swift Burgundy Wolf'),
+(1, 65640, 'Swift Gray Steed', 3, 65643, 'Swift Violet Ram'),
+(1, 65640, 'Swift Gray Steed', 4, 65638, 'Swift Moonsaber'),
+(1, 65640, 'Swift Gray Steed', 5, 65645, 'White Skeletal Warhorse'),
+(1, 65640, 'Swift Gray Steed', 6, 65641, 'Great Golden Kodo'),
+(1, 65640, 'Swift Gray Steed', 7, 65642, 'Turbostrider'),
+(1, 65640, 'Swift Gray Steed', 8, 65644, 'Swift Purple Raptor'),
+(1, 65640, 'Swift Gray Steed', 10, 65639, 'Swift Red Hawkstrider'),
+(1, 65640, 'Swift Gray Steed', 11, 65637, 'Great Red Elekk'),
+(1, 65642, 'Turbostrider', 6, 65646, 'Swift Burgundy Wolf'),
+(1, 65643, 'Swift Violet Ram', 8, 65646, 'Swift Burgundy Wolf'),
+(1, 66847, 'Striped Dawnsaber', 5, 64658, 'Black Wolf'),
+(2, 580, 'Timber Wolf', 5, 64977, 'Black Skeletal Horse'),
+(2, 580, 'Timber Wolf', 6, 18990, 'Brown Kodo'),
+(2, 580, 'Timber Wolf', 8, 8395, 'Emerald Raptor'),
+(2, 580, 'Timber Wolf', 10, 35022, 'Black Hawkstrider'),
+(2, 6653, 'Dire Wolf', 5, 17464, 'Brown Skeletal Horse'),
+(2, 6653, 'Dire Wolf', 6, 18989, 'Gray Kodo'),
+(2, 6653, 'Dire Wolf', 8, 10796, 'Turquoise Raptor'),
+(2, 6653, 'Dire Wolf', 10, 35020, 'Blue Hawkstrider'),
+(2, 6654, 'Brown Wolf', 5, 17463, 'Blue Skeletal Horse'),
+(2, 6654, 'Brown Wolf', 6, 64657, 'White Kodo'),
+(2, 6654, 'Brown Wolf', 8, 10799, 'Violet Raptor'),
+(2, 6654, 'Brown Wolf', 10, 34795, 'Red Hawkstrider'),
+(2, 23250, 'Swift Brown Wolf', 5, 17465, 'Green Skeletal Warhorse'),
+(2, 23250, 'Swift Brown Wolf', 6, 23249, 'Great Brown Kodo'),
+(2, 23250, 'Swift Brown Wolf', 8, 23241, 'Swift Blue Raptor'),
+(2, 23250, 'Swift Brown Wolf', 10, 35025, 'Swift Green Hawkstrider'),
+(2, 23251, 'Swift Timber Wolf', 5, 66846, 'Ochre Skeletal Warhorse'),
+(2, 23251, 'Swift Timber Wolf', 6, 23247, 'Great White Kodo'),
+(2, 23251, 'Swift Timber Wolf', 8, 23243, 'Swift Orange Raptor'),
+(2, 23251, 'Swift Timber Wolf', 10, 33660, 'Swift Pink Hawkstrider'),
+(2, 23252, 'Swift Gray Wolf', 5, 23246, 'Purple Skeletal Warhorse'),
+(2, 23252, 'Swift Gray Wolf', 6, 23248, 'Great Gray Kodo'),
+(2, 23252, 'Swift Gray Wolf', 8, 23242, 'Swift Olive Raptor'),
+(2, 23252, 'Swift Gray Wolf', 10, 35027, 'Swift Purple Hawkstrider'),
+(2, 63640, 'Orgrimmar Wolf', 5, 63643, 'Forsaken Warhorse'),
+(2, 63640, 'Orgrimmar Wolf', 6, 63641, 'Thunder Bluff Kodo'),
+(2, 63640, 'Orgrimmar Wolf', 8, 63635, 'Darkspear Raptor'),
+(2, 63640, 'Orgrimmar Wolf', 10, 63642, 'Silvermoon Hawkstrider'),
+(2, 64658, 'Black Wolf', 5, 17462, 'Red Skeletal Horse'),
+(2, 64658, 'Black Wolf', 10, 35018, 'Purple Hawkstrider'),
+(2, 65646, 'Swift Burgundy Wolf', 5, 65645, 'White Skeletal Warhorse'),
+(2, 65646, 'Swift Burgundy Wolf', 6, 65641, 'Great Golden Kodo'),
+(2, 65646, 'Swift Burgundy Wolf', 8, 65644, 'Swift Purple Raptor'),
+(2, 65646, 'Swift Burgundy Wolf', 10, 65639, 'Swift Red Hawkstrider'),
+(3, 458, 'Brown Horse', 2, 10799, 'Violet Raptor'),
+(3, 472, 'Pinto', 2, 8395, 'Emerald Raptor'),
+(3, 6648, 'Chestnut Mare', 2, 10796, 'Turquoise Raptor'),
+(3, 6777, 'Gray Ram', 1, 472, 'Pinto'),
+(3, 6777, 'Gray Ram', 2, 580, 'Timber Wolf'),
+(3, 6777, 'Gray Ram', 4, 8394, 'Striped Frostsaber'),
+(3, 6777, 'Gray Ram', 5, 64977, 'Black Skeletal Horse'),
+(3, 6777, 'Gray Ram', 6, 18990, 'Brown Kodo'),
+(3, 6777, 'Gray Ram', 7, 10969, 'Blue Mechanostrider'),
+(3, 6777, 'Gray Ram', 10, 35022, 'Black Hawkstrider'),
+(3, 6777, 'Gray Ram', 11, 34406, 'Brown Elekk'),
+(3, 6898, 'White Ram', 1, 6648, 'Chestnut Mare'),
+(3, 6898, 'White Ram', 2, 6653, 'Dire Wolf'),
+(3, 6898, 'White Ram', 4, 10789, 'Spotted Frostsaber'),
+(3, 6898, 'White Ram', 5, 17464, 'Brown Skeletal Horse'),
+(3, 6898, 'White Ram', 6, 18989, 'Gray Kodo'),
+(3, 6898, 'White Ram', 7, 17453, 'Green Mechanostrider'),
+(3, 6898, 'White Ram', 10, 35020, 'Blue Hawkstrider'),
+(3, 6898, 'White Ram', 11, 35710, 'Gray Elekk'),
+(3, 6899, 'Brown Ram', 1, 458, 'Brown Horse'),
+(3, 6899, 'Brown Ram', 2, 6654, 'Brown Wolf'),
+(3, 6899, 'Brown Ram', 4, 10793, 'Striped Nightsaber'),
+(3, 6899, 'Brown Ram', 5, 17463, 'Blue Skeletal Horse'),
+(3, 6899, 'Brown Ram', 6, 64657, 'White Kodo'),
+(3, 6899, 'Brown Ram', 7, 10873, 'Red Mechanostrider'),
+(3, 6899, 'Brown Ram', 10, 34795, 'Red Hawkstrider'),
+(3, 6899, 'Brown Ram', 11, 35711, 'Purple Elekk'),
+(3, 8394, 'Striped Frostsaber', 5, 8395, 'Emerald Raptor'),
+(3, 10789, 'Spotted Frostsaber', 5, 10796, 'Turquoise Raptor'),
+(3, 10793, 'Striped Nightsaber', 5, 10799, 'Violet Raptor'),
+(3, 10873, 'Red Mechanostrider', 6, 10799, 'Violet Raptor'),
+(3, 10969, 'Blue Mechanostrider', 6, 8395, 'Emerald Raptor'),
+(3, 15779, 'White Mechanostrider Mod B', 6, 17450, 'Ivory Raptor'),
+(3, 16056, 'Ancient Frostsaber', 5, 16084, 'Mottled Red Raptor'),
+(3, 16082, 'Palomino', 2, 16084, 'Mottled Red Raptor'),
+(3, 16083, 'White Stallion', 2, 17450, 'Ivory Raptor'),
+(3, 17453, 'Green Mechanostrider', 6, 10796, 'Turquoise Raptor'),
+(3, 17459, 'Icy Blue Mechanostrider Mod A', 6, 16084, 'Mottled Red Raptor'),
+(3, 17460, 'Frost Ram', 2, 16081, 'Winter Wolf'),
+(3, 17460, 'Frost Ram', 6, 18992, 'Teal Kodo'),
+(3, 17461, 'Black Ram', 2, 16080, 'Red Wolf'),
+(3, 17461, 'Black Ram', 6, 18991, 'Green Kodo'),
+(3, 22717, 'Black War Steed', 2, 22721, 'Black War Raptor'),
+(3, 22719, 'Black Battlestrider', 6, 22721, 'Black War Raptor'),
+(3, 22720, 'Black War Ram', 2, 22724, 'Black War Wolf'),
+(3, 22720, 'Black War Ram', 5, 22722, 'Red Skeletal Warhorse'),
+(3, 22720, 'Black War Ram', 6, 22718, 'Black War Kodo'),
+(3, 22720, 'Black War Ram', 10, 35028, 'Swift Warstrider'),
+(3, 22723, 'Black War Tiger', 5, 22721, 'Black War Raptor'),
+(3, 23219, 'Swift Mistsaber', 5, 23242, 'Swift Olive Raptor'),
+(3, 23221, 'Swift Frostsaber', 5, 23243, 'Swift Orange Raptor'),
+(3, 23222, 'Swift Yellow Mechanostrider', 6, 23243, 'Swift Orange Raptor'),
+(3, 23223, 'Swift White Mechanostrider', 6, 23242, 'Swift Olive Raptor'),
+(3, 23225, 'Swift Green Mechanostrider', 6, 23241, 'Swift Blue Raptor'),
+(3, 23227, 'Swift Palomino', 2, 23243, 'Swift Orange Raptor'),
+(3, 23228, 'Swift White Steed', 2, 23242, 'Swift Olive Raptor'),
+(3, 23229, 'Swift Brown Steed', 2, 23241, 'Swift Blue Raptor'),
+(3, 23238, 'Swift Brown Ram', 1, 23227, 'Swift Palomino'),
+(3, 23238, 'Swift Brown Ram', 2, 23251, 'Swift Timber Wolf'),
+(3, 23238, 'Swift Brown Ram', 4, 23221, 'Swift Frostsaber'),
+(3, 23238, 'Swift Brown Ram', 5, 66846, 'Ochre Skeletal Warhorse'),
+(3, 23238, 'Swift Brown Ram', 6, 23247, 'Great White Kodo'),
+(3, 23238, 'Swift Brown Ram', 7, 23222, 'Swift Yellow Mechanostrider'),
+(3, 23238, 'Swift Brown Ram', 10, 33660, 'Swift Pink Hawkstrider'),
+(3, 23238, 'Swift Brown Ram', 11, 35714, 'Great Purple Elekk'),
+(3, 23239, 'Swift Gray Ram', 1, 23229, 'Swift Brown Steed'),
+(3, 23239, 'Swift Gray Ram', 2, 23250, 'Swift Brown Wolf'),
+(3, 23239, 'Swift Gray Ram', 4, 23338, 'Swift Stormsaber'),
+(3, 23239, 'Swift Gray Ram', 5, 17465, 'Green Skeletal Warhorse'),
+(3, 23239, 'Swift Gray Ram', 6, 23249, 'Great Brown Kodo'),
+(3, 23239, 'Swift Gray Ram', 7, 23225, 'Swift Green Mechanostrider'),
+(3, 23239, 'Swift Gray Ram', 10, 35025, 'Swift Green Hawkstrider'),
+(3, 23239, 'Swift Gray Ram', 11, 35713, 'Great Blue Elekk'),
+(3, 23240, 'Swift White Ram', 1, 23228, 'Swift White Steed'),
+(3, 23240, 'Swift White Ram', 2, 23252, 'Swift Gray Wolf'),
+(3, 23240, 'Swift White Ram', 4, 23219, 'Swift Mistsaber'),
+(3, 23240, 'Swift White Ram', 5, 23246, 'Purple Skeletal Warhorse'),
+(3, 23240, 'Swift White Ram', 6, 23248, 'Great Gray Kodo'),
+(3, 23240, 'Swift White Ram', 7, 23223, 'Swift White Mechanostrider'),
+(3, 23240, 'Swift White Ram', 10, 35027, 'Swift Purple Hawkstrider'),
+(3, 23240, 'Swift White Ram', 11, 35712, 'Great Green Elekk'),
+(3, 23338, 'Swift Stormsaber', 5, 23241, 'Swift Blue Raptor'),
+(3, 34406, 'Brown Elekk', 10, 8395, 'Emerald Raptor'),
+(3, 35710, 'Gray Elekk', 10, 10796, 'Turquoise Raptor'),
+(3, 35711, 'Purple Elekk', 10, 10799, 'Violet Raptor'),
+(3, 35712, 'Great Green Elekk', 10, 23242, 'Swift Olive Raptor'),
+(3, 35713, 'Great Blue Elekk', 10, 23241, 'Swift Blue Raptor'),
+(3, 35714, 'Great Purple Elekk', 10, 23243, 'Swift Orange Raptor'),
+(3, 48027, 'Black War Elekk', 10, 0, 'Black War Rapto'),
+(3, 63232, 'Stormwind Steed', 2, 63635, 'Darkspear Raptor'),
+(3, 63636, 'Ironforge Ram', 1, 63232, 'Stormwind Steed'),
+(3, 63636, 'Ironforge Ram', 2, 63640, 'Orgrimmar Wolf'),
+(3, 63636, 'Ironforge Ram', 4, 63637, 'Darnassian Nightsaber'),
+(3, 63636, 'Ironforge Ram', 5, 63643, 'Forsaken Warhorse'),
+(3, 63636, 'Ironforge Ram', 6, 63641, 'Thunder Bluff Kodo'),
+(3, 63636, 'Ironforge Ram', 7, 63638, 'Gnomeregan Mechanostrider'),
+(3, 63636, 'Ironforge Ram', 10, 63642, 'Silvermoon Hawkstrider'),
+(3, 63636, 'Ironforge Ram', 11, 63639, 'Exodar Elekk'),
+(3, 63637, 'Darnassian Nightsaber', 5, 63635, 'Darkspear Raptor'),
+(3, 63638, 'Gnomeregan Mechanostrider', 6, 63635, 'Darkspear Raptor'),
+(3, 63639, 'Exodar Elekk', 10, 63635, 'Darkspear Raptor'),
+(3, 65637, 'Great Red Elekk', 10, 65644, 'Swift Purple Raptor'),
+(3, 65638, 'Swift Moonsaber', 5, 65644, 'Swift Purple Raptor'),
+(3, 65640, 'Swift Gray Steed', 2, 65644, 'Swift Purple Raptor'),
+(3, 65642, 'Turbostrider', 6, 65644, 'Swift Purple Raptor'),
+(3, 65643, 'Swift Violet Ram', 1, 65640, 'Swift Gray Steed'),
+(3, 65643, 'Swift Violet Ram', 2, 65646, 'Swift Burgundy Wolf'),
+(3, 65643, 'Swift Violet Ram', 4, 65638, 'Swift Moonsaber'),
+(3, 65643, 'Swift Violet Ram', 5, 65645, 'White Skeletal Warhorse'),
+(3, 65643, 'Swift Violet Ram', 6, 65641, 'Great Golden Kodo'),
+(3, 65643, 'Swift Violet Ram', 7, 65642, 'Turbostrider'),
+(3, 65643, 'Swift Violet Ram', 10, 65639, 'Swift Red Hawkstrider'),
+(3, 65643, 'Swift Violet Ram', 11, 65637, 'Great Red Elekk'),
+(4, 458, 'Brown Horse', 2, 17463, 'Blue Skeletal Horse'),
+(4, 470, 'Black Stallion', 2, 17462, 'Red Skeletal Horse'),
+(4, 472, 'Pinto', 2, 64977, 'Black Skeletal Horse'),
+(4, 6648, 'Chestnut Mare', 2, 17464, 'Brown Skeletal Horse'),
+(4, 6777, 'Gray Ram', 8, 64977, 'Black Skeletal Horse'),
+(4, 6898, 'White Ram', 8, 17464, 'Brown Skeletal Horse'),
+(4, 6899, 'Brown Ram', 8, 17463, 'Blue Skeletal Horse'),
+(4, 8394, 'Striped Frostsaber', 1, 472, 'Pinto'),
+(4, 8394, 'Striped Frostsaber', 2, 580, 'Timber Wolf'),
+(4, 8394, 'Striped Frostsaber', 3, 6777, 'Gray Ram'),
+(4, 8394, 'Striped Frostsaber', 6, 18990, 'Brown Kodo'),
+(4, 8394, 'Striped Frostsaber', 7, 10969, 'Blue Mechanostrider'),
+(4, 8394, 'Striped Frostsaber', 8, 8395, 'Emerald Raptor'),
+(4, 8394, 'Striped Frostsaber', 10, 35022, 'Black Hawkstrider'),
+(4, 8394, 'Striped Frostsaber', 11, 34406, 'Brown Elekk'),
+(4, 10789, 'Spotted Frostsaber', 1, 6648, 'Chestnut Mare'),
+(4, 10789, 'Spotted Frostsaber', 2, 6653, 'Dire Wolf'),
+(4, 10789, 'Spotted Frostsaber', 3, 6898, 'White Ram'),
+(4, 10789, 'Spotted Frostsaber', 6, 18989, 'Gray Kodo'),
+(4, 10789, 'Spotted Frostsaber', 7, 17453, 'Green Mechanostrider'),
+(4, 10789, 'Spotted Frostsaber', 8, 10796, 'Turquoise Raptor'),
+(4, 10789, 'Spotted Frostsaber', 10, 35020, 'Blue Hawkstrider'),
+(4, 10789, 'Spotted Frostsaber', 11, 35710, 'Gray Elekk'),
+(4, 10793, 'Striped Nightsaber', 1, 458, 'Brown Horse'),
+(4, 10793, 'Striped Nightsaber', 2, 6654, 'Brown Wolf'),
+(4, 10793, 'Striped Nightsaber', 3, 6899, 'Brown Ram'),
+(4, 10793, 'Striped Nightsaber', 6, 64657, 'White Kodo'),
+(4, 10793, 'Striped Nightsaber', 7, 10873, 'Red Mechanostrider'),
+(4, 10793, 'Striped Nightsaber', 8, 10799, 'Violet Raptor'),
+(4, 10793, 'Striped Nightsaber', 10, 34795, 'Red Hawkstrider'),
+(4, 10793, 'Striped Nightsaber', 11, 35711, 'Purple Elekk'),
+(4, 10873, 'Red Mechanostrider', 6, 17463, 'Blue Skeletal Horse'),
+(4, 10969, 'Blue Mechanostrider', 6, 64977, 'Black Skeletal Horse'),
+(4, 16056, 'Ancient Frostsaber', 2, 16080, 'Red Wolf'),
+(4, 16056, 'Ancient Frostsaber', 6, 18991, 'Green Kodo'),
+(4, 16056, 'Ancient Frostsaber', 8, 16084, 'Mottled Red Raptor'),
+(4, 17453, 'Green Mechanostrider', 6, 17464, 'Brown Skeletal Horse'),
+(4, 17454, 'Unpainted Mechanostrider', 6, 17462, 'Red Skeletal Horse'),
+(4, 22717, 'Black War Steed', 2, 22722, 'Red Skeletal Warhorse'),
+(4, 22719, 'Black Battlestrider', 6, 22722, 'Red Skeletal Warhorse'),
+(4, 22720, 'Black War Ram', 8, 22722, 'Red Skeletal Warhorse'),
+(4, 22723, 'Black War Tiger', 2, 22724, 'Black War Wolf'),
+(4, 22723, 'Black War Tiger', 6, 22718, 'Black War Kodo'),
+(4, 22723, 'Black War Tiger', 8, 22721, 'Black War Raptor'),
+(4, 23219, 'Swift Mistsaber', 1, 23228, 'Swift White Steed'),
+(4, 23219, 'Swift Mistsaber', 2, 23252, 'Swift Gray Wolf'),
+(4, 23219, 'Swift Mistsaber', 3, 23240, 'Swift White Ram'),
+(4, 23219, 'Swift Mistsaber', 6, 23248, 'Great Gray Kodo'),
+(4, 23219, 'Swift Mistsaber', 7, 23223, 'Swift White Mechanostrider'),
+(4, 23219, 'Swift Mistsaber', 8, 23242, 'Swift Olive Raptor'),
+(4, 23219, 'Swift Mistsaber', 10, 35027, 'Swift Purple Hawkstrider'),
+(4, 23219, 'Swift Mistsaber', 11, 35712, 'Great Green Elekk'),
+(4, 23221, 'Swift Frostsaber', 1, 23227, 'Swift Palomino'),
+(4, 23221, 'Swift Frostsaber', 2, 23251, 'Swift Timber Wolf'),
+(4, 23221, 'Swift Frostsaber', 3, 23238, 'Swift Brown Ram'),
+(4, 23221, 'Swift Frostsaber', 6, 23247, 'Great White Kodo'),
+(4, 23221, 'Swift Frostsaber', 7, 23222, 'Swift Yellow Mechanostrider'),
+(4, 23221, 'Swift Frostsaber', 8, 23243, 'Swift Orange Raptor'),
+(4, 23221, 'Swift Frostsaber', 10, 33660, 'Swift Pink Hawkstrider'),
+(4, 23221, 'Swift Frostsaber', 11, 35714, 'Great Purple Elekk'),
+(4, 23222, 'Swift Yellow Mechanostrider', 6, 66846, 'Ochre Skeletal Warhorse'),
+(4, 23223, 'Swift White Mechanostrider', 6, 23246, 'Purple Skeletal Warhorse'),
+(4, 23225, 'Swift Green Mechanostrider', 6, 17465, 'Green Skeletal Warhorse'),
+(4, 23227, 'Swift Palomino', 2, 66846, 'Ochre Skeletal Warhorse'),
+(4, 23228, 'Swift White Steed', 2, 23246, 'Purple Skeletal Warhorse'),
+(4, 23229, 'Swift Brown Steed', 2, 17465, 'Green Skeletal Warhorse'),
+(4, 23238, 'Swift Brown Ram', 8, 66846, 'Ochre Skeletal Warhorse'),
+(4, 23239, 'Swift Gray Ram', 8, 17465, 'Green Skeletal Warhorse'),
+(4, 23240, 'Swift White Ram', 8, 23246, 'Purple Skeletal Warhorse'),
+(4, 23338, 'Swift Stormsaber', 1, 23229, 'Swift Brown Steed'),
+(4, 23338, 'Swift Stormsaber', 2, 23250, 'Swift Brown Wolf'),
+(4, 23338, 'Swift Stormsaber', 3, 23239, 'Swift Gray Ram'),
+(4, 23338, 'Swift Stormsaber', 6, 23249, 'Great Brown Kodo'),
+(4, 23338, 'Swift Stormsaber', 7, 23225, 'Swift Green Mechanostrider'),
+(4, 23338, 'Swift Stormsaber', 8, 23241, 'Swift Blue Raptor'),
+(4, 23338, 'Swift Stormsaber', 10, 35025, 'Swift Green Hawkstrider'),
+(4, 23338, 'Swift Stormsaber', 11, 35713, 'Great Blue Elekk'),
+(4, 34406, 'Brown Elekk', 10, 64977, 'Black Skeletal Horse'),
+(4, 35710, 'Gray Elekk', 10, 17464, 'Brown Skeletal Horse'),
+(4, 35711, 'Purple Elekk', 10, 17463, 'Blue Skeletal Horse'),
+(4, 35712, 'Great Green Elekk', 10, 23246, 'Purple Skeletal Warhorse'),
+(4, 35713, 'Great Blue Elekk', 10, 17465, 'Green Skeletal Warhorse'),
+(4, 35714, 'Great Purple Elekk', 10, 66846, 'Ochre Skeletal Warhorse'),
+(4, 48027, 'Black War Elekk', 10, 22722, 'Red Skeletal Warhorse'),
+(4, 63232, 'Stormwind Steed', 2, 63643, 'Forsaken Warhorse'),
+(4, 63636, 'Ironforge Ram', 8, 63643, 'Forsaken Warhorse'),
+(4, 63637, 'Darnassian Nightsaber', 1, 63232, 'Stormwind Steed'),
+(4, 63637, 'Darnassian Nightsaber', 2, 63640, 'Orgrimmar Wolf'),
+(4, 63637, 'Darnassian Nightsaber', 3, 63636, 'Ironforge Ram'),
+(4, 63637, 'Darnassian Nightsaber', 6, 63641, 'Thunder Bluff Kodo'),
+(4, 63637, 'Darnassian Nightsaber', 7, 63638, 'Gnomeregan Mechanostrider'),
+(4, 63637, 'Darnassian Nightsaber', 8, 63635, 'Darkspear Raptor'),
+(4, 63637, 'Darnassian Nightsaber', 11, 63639, 'Exodar Elekk'),
+(4, 63638, 'Gnomeregan Mechanostrider', 6, 63643, 'Forsaken Warhorse'),
+(4, 63639, 'Exodar Elekk', 10, 63643, 'Forsaken Warhorse'),
+(4, 65637, 'Great Red Elekk', 10, 65645, 'White Skeletal Warhorse'),
+(4, 65638, 'Swift Moonsaber', 1, 65640, 'Swift Gray Steed'),
+(4, 65638, 'Swift Moonsaber', 2, 65646, 'Swift Burgundy Wolf'),
+(4, 65638, 'Swift Moonsaber', 3, 65643, 'Swift Violet Ram'),
+(4, 65638, 'Swift Moonsaber', 6, 65641, 'Great Golden Kodo'),
+(4, 65638, 'Swift Moonsaber', 7, 65642, 'Turbostrider'),
+(4, 65638, 'Swift Moonsaber', 8, 65644, 'Swift Purple Raptor'),
+(4, 65638, 'Swift Moonsaber', 11, 65637, 'Great Red Elekk'),
+(4, 65640, 'Swift Gray Steed', 2, 65645, 'White Skeletal Warhorse'),
+(4, 65642, 'Turbostrider', 6, 65645, 'White Skeletal Warhorse'),
+(4, 65643, 'Swift Violet Ram', 8, 65645, 'White Skeletal Warhorse'),
+(4, 66847, 'Striped Dawnsaber', 1, 470, 'Black Stallion'),
+(4, 66847, 'Striped Dawnsaber', 2, 64658, 'Black Wolf'),
+(4, 66847, 'Striped Dawnsaber', 7, 17454, 'Unpainted Mechanostrider'),
+(4, 66847, 'Striped Dawnsaber', 10, 35018, 'Purple Hawkstrider'),
+(5, 17462, 'Red Skeletal Horse', 2, 64658, 'Black Wolf'),
+(5, 17462, 'Red Skeletal Horse', 10, 35018, 'Purple Hawkstrider'),
+(5, 17463, 'Blue Skeletal Horse', 2, 6654, 'Brown Wolf'),
+(5, 17463, 'Blue Skeletal Horse', 6, 64657, 'White Kodo'),
+(5, 17463, 'Blue Skeletal Horse', 8, 10799, 'Violet Raptor'),
+(5, 17463, 'Blue Skeletal Horse', 10, 34795, 'Red Hawkstrider'),
+(5, 17464, 'Brown Skeletal Horse', 2, 6653, 'Dire Wolf'),
+(5, 17464, 'Brown Skeletal Horse', 6, 18989, 'Gray Kodo'),
+(5, 17464, 'Brown Skeletal Horse', 8, 10796, 'Turquoise Raptor'),
+(5, 17464, 'Brown Skeletal Horse', 10, 35020, 'Blue Hawkstrider'),
+(5, 17465, 'Green Skeletal Warhorse', 2, 23250, 'Swift Brown Wolf'),
+(5, 17465, 'Green Skeletal Warhorse', 6, 23249, 'Great Brown Kodo'),
+(5, 17465, 'Green Skeletal Warhorse', 8, 23241, 'Swift Blue Raptor'),
+(5, 17465, 'Green Skeletal Warhorse', 10, 35025, 'Swift Green Hawkstrider'),
+(5, 23246, 'Purple Skeletal Warhorse', 2, 23252, 'Swift Gray Wolf'),
+(5, 23246, 'Purple Skeletal Warhorse', 6, 23248, 'Great Gray Kodo'),
+(5, 23246, 'Purple Skeletal Warhorse', 8, 23242, 'Swift Olive Raptor'),
+(5, 23246, 'Purple Skeletal Warhorse', 10, 35027, 'Swift Purple Hawkstrider'),
+(5, 63643, 'Forsaken Warhorse', 2, 63640, 'Orgrimmar Wolf'),
+(5, 63643, 'Forsaken Warhorse', 6, 63641, 'Thunder Bluff Kodo'),
+(5, 63643, 'Forsaken Warhorse', 8, 63635, 'Darkspear Raptor'),
+(5, 63643, 'Forsaken Warhorse', 10, 63642, 'Silvermoon Hawkstrider'),
+(5, 64977, 'Black Skeletal Horse', 2, 580, 'Timber Wolf'),
+(5, 64977, 'Black Skeletal Horse', 6, 18990, 'Brown Kodo'),
+(5, 64977, 'Black Skeletal Horse', 8, 8395, 'Emerald Raptor'),
+(5, 64977, 'Black Skeletal Horse', 10, 35022, 'Black Hawkstrider'),
+(5, 65645, 'White Skeletal Warhorse', 2, 65646, 'Swift Burgundy Wolf'),
+(5, 65645, 'White Skeletal Warhorse', 6, 65641, 'Great Golden Kodo'),
+(5, 65645, 'White Skeletal Warhorse', 8, 65644, 'Swift Purple Raptor'),
+(5, 65645, 'White Skeletal Warhorse', 10, 65639, 'Swift Red Hawkstrider'),
+(5, 66846, 'Ochre Skeletal Warhorse', 2, 23251, 'Swift Timber Wolf'),
+(5, 66846, 'Ochre Skeletal Warhorse', 6, 23247, 'Great White Kodo'),
+(5, 66846, 'Ochre Skeletal Warhorse', 8, 23243, 'Swift Orange Raptor'),
+(5, 66846, 'Ochre Skeletal Warhorse', 10, 33660, 'Swift Pink Hawkstrider'),
+(6, 18989, 'Gray Kodo', 2, 6653, 'Dire Wolf'),
+(6, 18989, 'Gray Kodo', 5, 17464, 'Brown Skeletal Horse'),
+(6, 18989, 'Gray Kodo', 8, 10796, 'Turquoise Raptor'),
+(6, 18989, 'Gray Kodo', 10, 35020, 'Blue Hawkstrider'),
+(6, 18990, 'Brown Kodo', 2, 580, 'Timber Wolf'),
+(6, 18990, 'Brown Kodo', 5, 64977, 'Black Skeletal Horse'),
+(6, 18990, 'Brown Kodo', 8, 8395, 'Emerald Raptor'),
+(6, 18990, 'Brown Kodo', 10, 35022, 'Black Hawkstrider'),
+(6, 23247, 'Great White Kodo', 2, 23251, 'Swift Timber Wolf'),
+(6, 23247, 'Great White Kodo', 5, 66846, 'Ochre Skeletal Warhorse'),
+(6, 23247, 'Great White Kodo', 8, 23243, 'Swift Orange Raptor'),
+(6, 23247, 'Great White Kodo', 10, 33660, 'Swift Pink Hawkstrider'),
+(6, 23248, 'Great Gray Kodo', 2, 23252, 'Swift Gray Wolf'),
+(6, 23248, 'Great Gray Kodo', 5, 23246, 'Purple Skeletal Warhorse'),
+(6, 23248, 'Great Gray Kodo', 8, 23242, 'Swift Olive Raptor'),
+(6, 23248, 'Great Gray Kodo', 10, 35027, 'Swift Purple Hawkstrider'),
+(6, 23249, 'Great Brown Kodo', 2, 23250, 'Swift Brown Wolf'),
+(6, 23249, 'Great Brown Kodo', 5, 17465, 'Green Skeletal Warhorse'),
+(6, 23249, 'Great Brown Kodo', 8, 23241, 'Swift Blue Raptor'),
+(6, 23249, 'Great Brown Kodo', 10, 35025, 'Swift Green Hawkstrider'),
+(6, 63641, 'Thunder Bluff Kodo', 2, 63640, 'Orgrimmar Wolf'),
+(6, 63641, 'Thunder Bluff Kodo', 5, 63643, 'Forsaken Warhorse'),
+(6, 63641, 'Thunder Bluff Kodo', 8, 63635, 'Darkspear Raptor'),
+(6, 63641, 'Thunder Bluff Kodo', 10, 63642, 'Silvermoon Hawkstrider'),
+(6, 64657, 'White Kodo', 2, 6654, 'Brown Wolf'),
+(6, 64657, 'White Kodo', 5, 17463, 'Blue Skeletal Horse'),
+(6, 64657, 'White Kodo', 8, 10799, 'Violet Raptor'),
+(6, 64657, 'White Kodo', 10, 34795, 'Red Hawkstrider'),
+(6, 65641, 'Great Golden Kodo', 2, 65646, 'Swift Burgundy Wolf'),
+(6, 65641, 'Great Golden Kodo', 5, 65645, 'White Skeletal Warhorse'),
+(6, 65641, 'Great Golden Kodo', 8, 65644, 'Swift Purple Raptor'),
+(6, 65641, 'Great Golden Kodo', 10, 65639, 'Swift Red Hawkstrider'),
+(7, 0, 'lue Mechanostrider', 2, 580, 'Timber Wolf'),
+(7, 458, 'Brown Horse', 2, 64657, 'White Kodo'),
+(7, 472, 'Pinto', 2, 18990, 'Brown Kodo'),
+(7, 6648, 'Chestnut Mare', 2, 18989, 'Gray Kodo'),
+(7, 6777, 'Gray Ram', 8, 18990, 'Brown Kodo'),
+(7, 6898, 'White Ram', 8, 18989, 'Gray Kodo'),
+(7, 6899, 'Brown Ram', 8, 64657, 'White Kodo'),
+(7, 8394, 'Striped Frostsaber', 5, 18990, 'Brown Kodo'),
+(7, 10789, 'Spotted Frostsaber', 5, 18989, 'Gray Kodo'),
+(7, 10793, 'Striped Nightsaber', 5, 64657, 'White Kodo'),
+(7, 10873, 'Red Mechanostrider', 1, 458, 'Brown Horse'),
+(7, 10873, 'Red Mechanostrider', 2, 6654, 'Brown Wolf'),
+(7, 10873, 'Red Mechanostrider', 3, 6899, 'Brown Ram'),
+(7, 10873, 'Red Mechanostrider', 4, 10793, 'Striped Nightsaber'),
+(7, 10873, 'Red Mechanostrider', 5, 17463, 'Blue Skeletal Horse'),
+(7, 10873, 'Red Mechanostrider', 8, 10799, 'Violet Raptor'),
+(7, 10873, 'Red Mechanostrider', 10, 34795, 'Red Hawkstrider'),
+(7, 10873, 'Red Mechanostrider', 11, 35711, 'Purple Elekk'),
+(7, 10969, 'Blue Mechanostrider', 1, 472, 'Pinto'),
+(7, 10969, 'Blue Mechanostrider', 3, 6777, 'Gray Ram'),
+(7, 10969, 'Blue Mechanostrider', 4, 8394, 'Striped Frostsaber'),
+(7, 10969, 'Blue Mechanostrider', 5, 64977, 'Black Skeletal Horse'),
+(7, 10969, 'Blue Mechanostrider', 8, 8395, 'Emerald Raptor'),
+(7, 10969, 'Blue Mechanostrider', 10, 35022, 'Black Hawkstrider'),
+(7, 10969, 'Blue Mechanostrider', 11, 34406, 'Brown Elekk'),
+(7, 15779, 'White Mechanostrider Mod B', 2, 16081, 'Winter Wolf'),
+(7, 15779, 'White Mechanostrider Mod B', 8, 17450, 'Ivory Raptor'),
+(7, 16056, 'Ancient Frostsaber', 5, 18991, 'Green Kodo'),
+(7, 16082, 'Palomino', 2, 18991, 'Green Kodo'),
+(7, 16083, 'White Stallion', 2, 18992, 'Teal Kodo'),
+(7, 17453, 'Green Mechanostrider', 1, 6648, 'Chestnut Mare'),
+(7, 17453, 'Green Mechanostrider', 2, 6653, 'Dire Wolf'),
+(7, 17453, 'Green Mechanostrider', 3, 6898, 'White Ram'),
+(7, 17453, 'Green Mechanostrider', 4, 10789, 'Spotted Frostsaber'),
+(7, 17453, 'Green Mechanostrider', 5, 17464, 'Brown Skeletal Horse'),
+(7, 17453, 'Green Mechanostrider', 8, 10796, 'Turquoise Raptor'),
+(7, 17453, 'Green Mechanostrider', 10, 35020, 'Blue Hawkstrider'),
+(7, 17453, 'Green Mechanostrider', 11, 35710, 'Gray Elekk'),
+(7, 17454, 'Unpainted Mechanostrider', 1, 470, 'Black Stallion'),
+(7, 17454, 'Unpainted Mechanostrider', 2, 64658, 'Black Wolf'),
+(7, 17454, 'Unpainted Mechanostrider', 4, 66847, 'Striped Dawnsaber'),
+(7, 17454, 'Unpainted Mechanostrider', 5, 17462, 'Red Skeletal Horse'),
+(7, 17454, 'Unpainted Mechanostrider', 10, 35018, 'Purple Hawkstrider'),
+(7, 17459, 'Icy Blue Mechanostrider Mod A', 2, 16080, 'Red Wolf'),
+(7, 17459, 'Icy Blue Mechanostrider Mod A', 8, 16084, 'Mottled Red Raptor'),
+(7, 17460, 'Frost Ram', 8, 18992, 'Teal Kodo'),
+(7, 17461, 'Black Ram', 8, 18991, 'Green Kodo'),
+(7, 22717, 'Black War Steed', 2, 22718, 'Black War Kodo'),
+(7, 22719, 'Black Battlestrider', 2, 22724, 'Black War Wolf'),
+(7, 22719, 'Black Battlestrider', 5, 22722, 'Red Skeletal Warhorse'),
+(7, 22719, 'Black Battlestrider', 8, 22721, 'Black War Raptor'),
+(7, 22719, 'Black Battlestrider', 10, 35028, 'Swift Warstrider'),
+(7, 22720, 'Black War Ram', 8, 22718, 'Black War Kodo'),
+(7, 22723, 'Black War Tiger', 5, 22718, 'Black War Kodo'),
+(7, 23219, 'Swift Mistsaber', 5, 23248, 'Great Gray Kodo'),
+(7, 23221, 'Swift Frostsaber', 5, 23247, 'Great White Kodo'),
+(7, 23222, 'Swift Yellow Mechanostrider', 1, 23227, 'Swift Palomino'),
+(7, 23222, 'Swift Yellow Mechanostrider', 2, 23251, 'Swift Timber Wolf'),
+(7, 23222, 'Swift Yellow Mechanostrider', 3, 23238, 'Swift Brown Ram'),
+(7, 23222, 'Swift Yellow Mechanostrider', 4, 23221, 'Swift Frostsaber'),
+(7, 23222, 'Swift Yellow Mechanostrider', 5, 66846, 'Ochre Skeletal Warhorse'),
+(7, 23222, 'Swift Yellow Mechanostrider', 8, 23243, 'Swift Orange Raptor'),
+(7, 23222, 'Swift Yellow Mechanostrider', 10, 33660, 'Swift Pink Hawkstrider'),
+(7, 23222, 'Swift Yellow Mechanostrider', 11, 35714, 'Great Purple Elekk'),
+(7, 23223, 'Swift White Mechanostrider', 1, 23228, 'Swift White Steed'),
+(7, 23223, 'Swift White Mechanostrider', 2, 23252, 'Swift Gray Wolf'),
+(7, 23223, 'Swift White Mechanostrider', 3, 23240, 'Swift White Ram'),
+(7, 23223, 'Swift White Mechanostrider', 4, 23219, 'Swift Mistsaber'),
+(7, 23223, 'Swift White Mechanostrider', 5, 23246, 'Purple Skeletal Warhorse'),
+(7, 23223, 'Swift White Mechanostrider', 8, 23242, 'Swift Olive Raptor'),
+(7, 23223, 'Swift White Mechanostrider', 10, 35027, 'Swift Purple Hawkstrider'),
+(7, 23223, 'Swift White Mechanostrider', 11, 35712, 'Great Green Elekk'),
+(7, 23225, 'Swift Green Mechanostrider', 1, 23229, 'Swift Brown Steed'),
+(7, 23225, 'Swift Green Mechanostrider', 2, 23250, 'Swift Brown Wolf'),
+(7, 23225, 'Swift Green Mechanostrider', 3, 23239, 'Swift Gray Ram'),
+(7, 23225, 'Swift Green Mechanostrider', 4, 23338, 'Swift Stormsaber'),
+(7, 23225, 'Swift Green Mechanostrider', 5, 17465, 'Green Skeletal Warhorse'),
+(7, 23225, 'Swift Green Mechanostrider', 8, 23241, 'Swift Blue Raptor'),
+(7, 23225, 'Swift Green Mechanostrider', 10, 35025, 'Swift Green Hawkstrider'),
+(7, 23225, 'Swift Green Mechanostrider', 11, 35713, 'Great Blue Elekk'),
+(7, 23227, 'Swift Palomino', 2, 23247, 'Great White Kodo'),
+(7, 23228, 'Swift White Steed', 2, 23248, 'Great Gray Kodo'),
+(7, 23229, 'Swift Brown Steed', 2, 23249, 'Great Brown Kodo'),
+(7, 23238, 'Swift Brown Ram', 8, 23247, 'Great White Kodo'),
+(7, 23239, 'Swift Gray Ram', 8, 23249, 'Great Brown Kodo'),
+(7, 23240, 'Swift White Ram', 8, 23248, 'Great Gray Kodo'),
+(7, 23338, 'Swift Stormsaber', 5, 23249, 'Great Brown Kodo'),
+(7, 34406, 'Brown Elekk', 10, 18990, 'Brown Kodo'),
+(7, 35710, 'Gray Elekk', 10, 18989, 'Gray Kodo'),
+(7, 35711, 'Purple Elekk', 10, 64657, 'White Kodo'),
+(7, 35712, 'Great Green Elekk', 10, 23248, 'Great Gray Kodo'),
+(7, 35713, 'Great Blue Elekk', 10, 23249, 'Great Brown Kodo'),
+(7, 35714, 'Great Purple Elekk', 10, 23247, 'Great White Kodo'),
+(7, 48027, 'Black War Elekk', 10, 22718, 'Black War Kodo'),
+(7, 63232, 'Stormwind Steed', 2, 63641, 'Thunder Bluff Kodo'),
+(7, 63636, 'Ironforge Ram', 8, 63641, 'Thunder Bluff Kodo'),
+(7, 63637, 'Darnassian Nightsaber', 5, 63641, 'Thunder Bluff Kodo'),
+(7, 63638, 'Gnomeregan Mechanostrider', 1, 63232, 'Stormwind Steed'),
+(7, 63638, 'Gnomeregan Mechanostrider', 2, 63640, 'Orgrimmar Wolf'),
+(7, 63638, 'Gnomeregan Mechanostrider', 3, 63636, 'Ironforge Ram'),
+(7, 63638, 'Gnomeregan Mechanostrider', 4, 63637, 'Darnassian Nightsaber'),
+(7, 63638, 'Gnomeregan Mechanostrider', 5, 63643, 'Forsaken Warhorse'),
+(7, 63638, 'Gnomeregan Mechanostrider', 8, 63635, 'Darkspear Raptor'),
+(7, 63638, 'Gnomeregan Mechanostrider', 10, 63642, 'Silvermoon Hawkstrider'),
+(7, 63638, 'Gnomeregan Mechanostrider', 11, 63639, 'Exodar Elekk'),
+(7, 63639, 'Exodar Elekk', 10, 63641, 'Thunder Bluff Kodo'),
+(7, 65637, 'Great Red Elekk', 10, 65641, 'Great Golden Kodo'),
+(7, 65638, 'Swift Moonsaber', 5, 65641, 'Great Golden Kodo'),
+(7, 65640, 'Swift Gray Steed', 2, 65641, 'Great Golden Kodo'),
+(7, 65642, 'Turbostrider', 1, 65640, 'Swift Gray Steed'),
+(7, 65642, 'Turbostrider', 2, 65646, 'Swift Burgundy Wolf'),
+(7, 65642, 'Turbostrider', 3, 65643, 'Swift Violet Ram'),
+(7, 65642, 'Turbostrider', 4, 65638, 'Swift Moonsaber'),
+(7, 65642, 'Turbostrider', 5, 65645, 'White Skeletal Warhorse'),
+(7, 65642, 'Turbostrider', 8, 65644, 'Swift Purple Raptor'),
+(7, 65642, 'Turbostrider', 10, 65639, 'Swift Red Hawkstrider'),
+(7, 65642, 'Turbostrider', 11, 65637, 'Great Red Elekk'),
+(7, 65643, 'Swift Violet Ram', 8, 65641, 'Great Golden Kodo'),
+(8, 8395, 'Emerald Raptor', 2, 580, 'Timber Wolf'),
+(8, 8395, 'Emerald Raptor', 5, 64977, 'Black Skeletal Horse'),
+(8, 8395, 'Emerald Raptor', 6, 18990, 'Brown Kodo'),
+(8, 8395, 'Emerald Raptor', 10, 35022, 'Black Hawkstrider'),
+(8, 10796, 'Turquoise Raptor', 2, 6653, 'Dire Wolf'),
+(8, 10796, 'Turquoise Raptor', 5, 17464, 'Brown Skeletal Horse'),
+(8, 10796, 'Turquoise Raptor', 6, 18989, 'Gray Kodo'),
+(8, 10796, 'Turquoise Raptor', 10, 35020, 'Blue Hawkstrider'),
+(8, 10799, 'Violet Raptor', 2, 6654, 'Brown Wolf'),
+(8, 10799, 'Violet Raptor', 5, 17463, 'Blue Skeletal Horse'),
+(8, 10799, 'Violet Raptor', 6, 64657, 'White Kodo'),
+(8, 10799, 'Violet Raptor', 10, 34795, 'Red Hawkstrider'),
+(8, 23241, 'Swift Blue Raptor', 2, 23250, 'Swift Brown Wolf'),
+(8, 23241, 'Swift Blue Raptor', 5, 17465, 'Green Skeletal Warhorse'),
+(8, 23241, 'Swift Blue Raptor', 6, 23249, 'Great Brown Kodo'),
+(8, 23241, 'Swift Blue Raptor', 10, 35025, 'Swift Green Hawkstrider'),
+(8, 23242, 'Swift Olive Raptor', 2, 23252, 'Swift Gray Wolf'),
+(8, 23242, 'Swift Olive Raptor', 5, 23246, 'Purple Skeletal Warhorse'),
+(8, 23242, 'Swift Olive Raptor', 6, 23248, 'Great Gray Kodo'),
+(8, 23242, 'Swift Olive Raptor', 10, 35027, 'Swift Purple Hawkstrider'),
+(8, 23243, 'Swift Orange Raptor', 2, 23251, 'Swift Timber Wolf'),
+(8, 23243, 'Swift Orange Raptor', 5, 66846, 'Ochre Skeletal Warhorse'),
+(8, 23243, 'Swift Orange Raptor', 6, 23247, 'Great White Kodo'),
+(8, 23243, 'Swift Orange Raptor', 10, 33660, 'Swift Pink Hawkstrider'),
+(8, 63635, 'Darkspear Raptor', 2, 63640, 'Orgrimmar Wolf'),
+(8, 63635, 'Darkspear Raptor', 5, 63643, 'Forsaken Warhorse'),
+(8, 63635, 'Darkspear Raptor', 6, 63641, 'Thunder Bluff Kodo'),
+(8, 63635, 'Darkspear Raptor', 10, 63642, 'Silvermoon Hawkstrider'),
+(8, 65644, 'Swift Purple Raptor', 2, 65646, 'Swift Burgundy Wolf'),
+(8, 65644, 'Swift Purple Raptor', 5, 65645, 'White Skeletal Warhorse'),
+(8, 65644, 'Swift Purple Raptor', 6, 65641, 'Great Golden Kodo'),
+(8, 65644, 'Swift Purple Raptor', 10, 65639, 'Swift Red Hawkstrider'),
+(10, 33660, 'Swift Pink Hawkstrider', 2, 23251, 'Swift Timber Wolf'),
+(10, 33660, 'Swift Pink Hawkstrider', 5, 66846, 'Ochre Skeletal Warhorse'),
+(10, 33660, 'Swift Pink Hawkstrider', 6, 23247, 'Great White Kodo'),
+(10, 33660, 'Swift Pink Hawkstrider', 8, 23243, 'Swift Orange Raptor'),
+(10, 34795, 'Red Hawkstrider', 2, 6654, 'Brown Wolf'),
+(10, 34795, 'Red Hawkstrider', 5, 17463, 'Blue Skeletal Horse'),
+(10, 34795, 'Red Hawkstrider', 6, 64657, 'White Kodo'),
+(10, 34795, 'Red Hawkstrider', 8, 10799, 'Violet Raptor'),
+(10, 35018, 'Purple Hawkstrider', 2, 64658, 'Black Wolf'),
+(10, 35018, 'Purple Hawkstrider', 5, 17462, 'Red Skeletal Horse'),
+(10, 35020, 'Blue Hawkstrider', 2, 6653, 'Dire Wolf'),
+(10, 35020, 'Blue Hawkstrider', 5, 17464, 'Brown Skeletal Horse'),
+(10, 35020, 'Blue Hawkstrider', 6, 18989, 'Gray Kodo'),
+(10, 35020, 'Blue Hawkstrider', 8, 10796, 'Turquoise Raptor'),
+(10, 35022, 'Black Hawkstrider', 2, 580, 'Timber Wolf'),
+(10, 35022, 'Black Hawkstrider', 5, 64977, 'Black Skeletal Horse'),
+(10, 35022, 'Black Hawkstrider', 6, 18990, 'Brown Kodo'),
+(10, 35022, 'Black Hawkstrider', 8, 8395, 'Emerald Raptor'),
+(10, 35025, 'Swift Green Hawkstrider', 2, 23250, 'Swift Brown Wolf'),
+(10, 35025, 'Swift Green Hawkstrider', 5, 17465, 'Green Skeletal Warhorse'),
+(10, 35025, 'Swift Green Hawkstrider', 6, 23249, 'Great Brown Kodo'),
+(10, 35025, 'Swift Green Hawkstrider', 8, 23241, 'Swift Blue Raptor'),
+(10, 35027, 'Swift Purple Hawkstrider', 2, 23252, 'Swift Gray Wolf'),
+(10, 35027, 'Swift Purple Hawkstrider', 5, 23246, 'Purple Skeletal Warhorse'),
+(10, 35027, 'Swift Purple Hawkstrider', 6, 23248, 'Great Gray Kodo'),
+(10, 35027, 'Swift Purple Hawkstrider', 8, 23242, 'Swift Olive Raptor'),
+(10, 63642, 'Silvermoon Hawkstrider', 2, 63640, 'Orgrimmar Wolf'),
+(10, 63642, 'Silvermoon Hawkstrider', 5, 63643, 'Forsaken Warhorse'),
+(10, 63642, 'Silvermoon Hawkstrider', 6, 63641, 'Thunder Bluff Kodo'),
+(10, 63642, 'Silvermoon Hawkstrider', 8, 63635, 'Darkspear Raptor'),
+(10, 65639, 'Swift Red Hawkstrider', 2, 65646, 'Swift Burgundy Wolf'),
+(10, 65639, 'Swift Red Hawkstrider', 5, 65645, 'White Skeletal Warhorse'),
+(10, 65639, 'Swift Red Hawkstrider', 6, 65641, 'Great Golden Kodo'),
+(10, 65639, 'Swift Red Hawkstrider', 8, 65644, 'Swift Purple Raptor'),
+(11, 458, 'Brown Horse', 2, 34795, 'Red Hawkstrider'),
+(11, 470, 'Black Stallion', 2, 35018, 'Purple Hawkstrider'),
+(11, 472, 'Pinto', 2, 35022, 'Black Hawkstrider'),
+(11, 6648, 'Chestnut Mare', 2, 35020, 'Blue Hawkstrider'),
+(11, 6777, 'Gray Ram', 8, 35022, 'Black Hawkstrider'),
+(11, 6898, 'White Ram', 8, 35020, 'Blue Hawkstrider'),
+(11, 6899, 'Brown Ram', 8, 34795, 'Red Hawkstrider'),
+(11, 8394, 'Striped Frostsaber', 5, 35022, 'Black Hawkstrider'),
+(11, 10789, 'Spotted Frostsaber', 5, 35020, 'Blue Hawkstrider'),
+(11, 10793, 'Striped Nightsaber', 5, 34795, 'Red Hawkstrider'),
+(11, 10873, 'Red Mechanostrider', 6, 34795, 'Red Hawkstrider'),
+(11, 10969, 'Blue Mechanostrider', 6, 35022, 'Black Hawkstrider'),
+(11, 17453, 'Green Mechanostrider', 6, 35020, 'Blue Hawkstrider'),
+(11, 17454, 'Unpainted Mechanostrider', 6, 35018, 'Purple Hawkstrider'),
+(11, 22717, 'Black War Steed', 2, 35028, 'Swift Warstrider'),
+(11, 22719, 'Black Battlestrider', 6, 35028, 'Swift Warstrider'),
+(11, 22720, 'Black War Ram', 8, 35028, 'Swift Warstrider'),
+(11, 22723, 'Black War Tiger', 5, 35028, 'Swift Warstrider'),
+(11, 23219, 'Swift Mistsaber', 5, 35027, 'Swift Purple Hawkstrider'),
+(11, 23221, 'Swift Frostsaber', 5, 33660, 'Swift Pink Hawkstrider'),
+(11, 23222, 'Swift Yellow Mechanostrider', 6, 33660, 'Swift Pink Hawkstrider'),
+(11, 23223, 'Swift White Mechanostrider', 6, 35027, 'Swift Purple Hawkstrider'),
+(11, 23225, 'Swift Green Mechanostrider', 6, 35025, 'Swift Green Hawkstrider'),
+(11, 23227, 'Swift Palomino', 2, 33660, 'Swift Pink Hawkstrider'),
+(11, 23228, 'Swift White Steed', 2, 35027, 'Swift Purple Hawkstrider'),
+(11, 23229, 'Swift Brown Steed', 2, 35025, 'Swift Green Hawkstrider'),
+(11, 23238, 'Swift Brown Ram', 8, 33660, 'Swift Pink Hawkstrider'),
+(11, 23239, 'Swift Gray Ram', 8, 35025, 'Swift Green Hawkstrider'),
+(11, 23240, 'Swift White Ram', 8, 35027, 'Swift Purple Hawkstrider'),
+(11, 23338, 'Swift Stormsaber', 5, 35025, 'Swift Green Hawkstrider'),
+(11, 34406, 'Brown Elekk', 1, 472, 'Pinto'),
+(11, 34406, 'Brown Elekk', 2, 580, 'Timber Wolf'),
+(11, 34406, 'Brown Elekk', 3, 6777, 'Gray Ram'),
+(11, 34406, 'Brown Elekk', 4, 8394, 'Striped Frostsaber'),
+(11, 34406, 'Brown Elekk', 5, 64977, 'Black Skeletal Horse'),
+(11, 34406, 'Brown Elekk', 6, 18990, 'Brown Kodo'),
+(11, 34406, 'Brown Elekk', 7, 10969, 'Blue Mechanostrider'),
+(11, 34406, 'Brown Elekk', 8, 8395, 'Emerald Raptor'),
+(11, 35710, 'Gray Elekk', 1, 6648, 'Chestnut Mare'),
+(11, 35710, 'Gray Elekk', 2, 6653, 'Dire Wolf'),
+(11, 35710, 'Gray Elekk', 3, 6898, 'White Ram'),
+(11, 35710, 'Gray Elekk', 4, 10789, 'Spotted Frostsaber'),
+(11, 35710, 'Gray Elekk', 5, 17464, 'Brown Skeletal Horse'),
+(11, 35710, 'Gray Elekk', 6, 18989, 'Gray Kodo'),
+(11, 35710, 'Gray Elekk', 7, 17453, 'Green Mechanostrider'),
+(11, 35710, 'Gray Elekk', 8, 10796, 'Turquoise Raptor'),
+(11, 35711, 'Purple Elekk', 1, 458, 'Brown Horse'),
+(11, 35711, 'Purple Elekk', 2, 6654, 'Brown Wolf'),
+(11, 35711, 'Purple Elekk', 3, 6899, 'Brown Ram'),
+(11, 35711, 'Purple Elekk', 4, 10793, 'Striped Nightsaber'),
+(11, 35711, 'Purple Elekk', 5, 17463, 'Blue Skeletal Horse'),
+(11, 35711, 'Purple Elekk', 6, 64657, 'White Kodo'),
+(11, 35711, 'Purple Elekk', 7, 10873, 'Red Mechanostrider'),
+(11, 35711, 'Purple Elekk', 8, 10799, 'Violet Raptor'),
+(11, 35712, 'Great Green Elekk', 1, 23228, 'Swift White Steed'),
+(11, 35712, 'Great Green Elekk', 2, 23252, 'Swift Gray Wolf'),
+(11, 35712, 'Great Green Elekk', 3, 23240, 'Swift White Ram'),
+(11, 35712, 'Great Green Elekk', 4, 23219, 'Swift Mistsaber'),
+(11, 35712, 'Great Green Elekk', 5, 23246, 'Purple Skeletal Warhorse'),
+(11, 35712, 'Great Green Elekk', 6, 23248, 'Great Gray Kodo'),
+(11, 35712, 'Great Green Elekk', 7, 23223, 'Swift White Mechanostrider'),
+(11, 35712, 'Great Green Elekk', 8, 23242, 'Swift Olive Raptor'),
+(11, 35713, 'Great Blue Elekk', 1, 23229, 'Swift Brown Steed'),
+(11, 35713, 'Great Blue Elekk', 2, 23250, 'Swift Brown Wolf'),
+(11, 35713, 'Great Blue Elekk', 3, 23239, 'Swift Gray Ram'),
+(11, 35713, 'Great Blue Elekk', 4, 23338, 'Swift Stormsaber'),
+(11, 35713, 'Great Blue Elekk', 5, 17465, 'Green Skeletal Warhorse'),
+(11, 35713, 'Great Blue Elekk', 6, 23249, 'Great Brown Kodo'),
+(11, 35713, 'Great Blue Elekk', 7, 23225, 'Swift Green Mechanostrider'),
+(11, 35713, 'Great Blue Elekk', 8, 23241, 'Swift Blue Raptor'),
+(11, 35714, 'Great Purple Elekk', 1, 23227, 'Swift Palomino'),
+(11, 35714, 'Great Purple Elekk', 2, 23251, 'Swift Timber Wolf'),
+(11, 35714, 'Great Purple Elekk', 3, 23238, 'Swift Brown Ram'),
+(11, 35714, 'Great Purple Elekk', 4, 23221, 'Swift Frostsaber'),
+(11, 35714, 'Great Purple Elekk', 5, 66846, 'Ochre Skeletal Warhorse'),
+(11, 35714, 'Great Purple Elekk', 6, 23247, 'Great White Kodo'),
+(11, 35714, 'Great Purple Elekk', 7, 23222, 'Swift Yellow Mechanostrider'),
+(11, 35714, 'Great Purple Elekk', 8, 23243, 'Swift Orange Raptor'),
+(11, 48027, 'Black War Elekk', 2, 22724, 'Black War Wolf'),
+(11, 48027, 'Black War Elekk', 5, 22722, 'Red Skeletal Warhorse'),
+(11, 48027, 'Black War Elekk', 6, 22718, 'Black War Kodo'),
+(11, 48027, 'Black War Elekk', 8, 22721, 'Black War Raptor'),
+(11, 63232, 'Stormwind Steed', 2, 63642, 'Silvermoon Hawkstrider'),
+(11, 63636, 'Ironforge Ram', 8, 63642, 'Silvermoon Hawkstrider'),
+(11, 63637, 'Darnassian Nightsaber', 5, 63642, 'Silvermoon Hawkstrider'),
+(11, 63638, 'Gnomeregan Mechanostrider', 6, 63642, 'Silvermoon Hawkstrider'),
+(11, 63639, 'Exodar Elekk', 1, 63232, 'Stormwind Steed'),
+(11, 63639, 'Exodar Elekk', 2, 63640, 'Orgrimmar Wolf'),
+(11, 63639, 'Exodar Elekk', 3, 63636, 'Ironforge Ram'),
+(11, 63639, 'Exodar Elekk', 4, 63637, 'Darnassian Nightsaber'),
+(11, 63639, 'Exodar Elekk', 5, 63643, 'Forsaken Warhorse'),
+(11, 63639, 'Exodar Elekk', 6, 63641, 'Thunder Bluff Kodo'),
+(11, 63639, 'Exodar Elekk', 7, 63638, 'Gnomeregan Mechanostrider'),
+(11, 63639, 'Exodar Elekk', 8, 63635, 'Darkspear Raptor'),
+(11, 65637, 'Great Red Elekk', 1, 65640, 'Swift Gray Steed'),
+(11, 65637, 'Great Red Elekk', 2, 65646, 'Swift Burgundy Wolf'),
+(11, 65637, 'Great Red Elekk', 3, 65643, 'Swift Violet Ram'),
+(11, 65637, 'Great Red Elekk', 4, 65638, 'Swift Moonsaber'),
+(11, 65637, 'Great Red Elekk', 5, 65645, 'White Skeletal Warhorse'),
+(11, 65637, 'Great Red Elekk', 6, 65641, 'Great Golden Kodo'),
+(11, 65637, 'Great Red Elekk', 7, 65642, 'Turbostrider'),
+(11, 65637, 'Great Red Elekk', 8, 65644, 'Swift Purple Raptor'),
+(11, 65638, 'Swift Moonsaber', 5, 65639, 'Swift Red Hawkstrider'),
+(11, 65640, 'Swift Gray Steed', 2, 65639, 'Swift Red Hawkstrider'),
+(11, 65642, 'Turbostrider', 6, 65639, 'Swift Red Hawkstrider'),
+(11, 65643, 'Swift Violet Ram', 8, 65639, 'Swift Red Hawkstrider'),
+(11, 66847, 'Striped Dawnsaber', 5, 35018, 'Purple Hawkstrider');
+
+CREATE TABLE IF NOT EXISTS `player_factionchange_titles` (
+  `alliance_id` int(8) NOT NULL,
+  `alliance_comment` varchar(255) NOT NULL,
+  `horde_id` int(8) NOT NULL,
+  `horde_comment` varchar(255) NOT NULL,
+  PRIMARY KEY (`alliance_id`,`horde_id`)
+) DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of player_factionchange_titles
+-- ----------------------------
+INSERT INTO `player_factionchange_titles` VALUES ('1','Private <Name>','15','Scout <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('2','Corporal <Name>','16','Grunt <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('3','Sergeant <Name>','17','Sergeant <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('4','Master Sergeant <Name>','18','Senior Sergeant <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('5','Sergeant Major <Name>','19','First Sergeant <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('6','Knight <Name>','20','Stone Guard <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('7','Knight-Lieutenant <Name>','21','Blood Guard <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('8','Knight-Captain <Name>','22','Legionnaire <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('9','Knight-Champion <Name>','23','Centurion <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('10','Lieutenant Commander <Name>','24','Champion <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('11','Commander <Name>','25','Lieutenant General <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('12','Marshal <Name>','26','General <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('13','Field Marshal <Name>','27','Warlord <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('14','Grand Marshal <Name>','28','High Warlord <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('48','Justicar <Name>','47','Conqueror <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('75','Flame Warden <Name>','76','Flame Keeper <Name>');
+INSERT INTO `player_factionchange_titles` VALUES ('113','<Name> of Gnomeregan','153','<Name> of Thunder Bluff');
+INSERT INTO `player_factionchange_titles` VALUES ('126','<Name> of the Alliance','127','<Name> of the Horde');
+INSERT INTO `player_factionchange_titles` VALUES ('146','<Name> of the Exodar','152','<Name> of Silvermoon');
+INSERT INTO `player_factionchange_titles` VALUES ('147','<Name> of Darnassus','154','<Name> of the Undercity');
+INSERT INTO `player_factionchange_titles` VALUES ('148','<Name> of Ironforge','151','<Name> of Sen\'jin');
+INSERT INTO `player_factionchange_titles` VALUES ('149','<Name> of Stormwind','150','<Name> of Orgrimmar');
