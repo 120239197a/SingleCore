@@ -26,17 +26,17 @@ EndScriptData */
 
 enum
 {
-    SAY_AGGRO       = -1603350,
-    SAY_SLAY_1      = -1603351,
-    SAY_SLAY_2      = -1603352,
-    SAY_SURGE       = -1603353,
-    SAY_DEATH       = -1603354,
-    SAY_ENRAGE      = -1603355,
-    SAY_HARD_MODE   = -1603356,
+    SAY_AGGRO                           = -1603096,
+    SAY_SLAY_1                          = -1603097,
+    SAY_SLAY_2                          = -1603098,
+    SAY_SURGE                           = -1603099,
+    SAY_DEATH                           = -1603100,
+    SAY_ENRAGE                          = -1603101,
+    SAY_HARD_MODE                       = -1603102,
 
-    EMOTE_VAPOR     = -1603357,
-    EMOTE_SURGE     = -1603358,
-    EMOTE_ANIMUS    = -1603359,
+    EMOTE_VAPOR                         = -1603103,
+    EMOTE_SURGE                         = -1603104,
+    EMOTE_ANIMUS                        = -1603105,
 
     SPELL_AURA_OF_DESPAIR               = 62692,
     SPELL_SHADOW_CRASH                  = 62660,
@@ -55,8 +55,6 @@ enum
     MAX_HARD_MODE_VAPORS                = 6,
 
     NPC_SARONITE_VAPOR                  = 33488,
-    NPC_SARONITE_ANIMUS                 = 33524,
-    SPELL_PROFOUND_DARKNESS             = 63420,
 };
 
 /*######
@@ -85,9 +83,9 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
 
     GuidList m_lVaporsGuids;
 
-    void Reset()
+    void Reset() override
     {
-        m_uiEnrageTimer          = 10*MINUTE*IN_MILLISECONDS;
+        m_uiEnrageTimer          = 10 * MINUTE * IN_MILLISECONDS;
         m_uiFlamesTimer          = 8000;
         m_uiSaroniteVaporTimer   = 30000;
         m_uiSurgeTimer           = 60000;
@@ -97,7 +95,7 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
         m_uiVaporsGathered       = 0;
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* /*pWho*/) override
     {
         if (m_pInstance)
         {
@@ -116,7 +114,7 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
             m_pInstance->SetData(TYPE_VEZAX, FAIL);
     }
 
-    void JustDied(Unit* pKiller) override
+    void JustDied(Unit* /*pKiller*/) override
     {
         if (m_pInstance)
             m_pInstance->SetData(TYPE_VEZAX, DONE);
@@ -124,7 +122,7 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
         DoScriptText(SAY_DEATH, m_creature);
     }
 
-    void KilledUnit(Unit* pVictim) override
+    void KilledUnit(Unit* /*pVictim*/) override
     {
         DoScriptText(urand(0, 1) ? SAY_SLAY_1 : SAY_SLAY_2, m_creature);
     }
@@ -134,9 +132,6 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
         if (pSummoned->GetEntry() == NPC_SARONITE_VAPOR)
         {
             m_lVaporsGuids.push_back(pSummoned->GetObjectGuid());
-            pSummoned->SetRespawnTime(DAY*IN_MILLISECONDS);
-            pSummoned->SetCorpseDelay(DAY*IN_MILLISECONDS);
-            pSummoned->SetRespawnDelay(DAY*IN_MILLISECONDS);
 
             // if vapors have reached the max number for hard mode then summon animus
             if (m_lVaporsGuids.size() == MAX_HARD_MODE_VAPORS)
@@ -146,12 +141,12 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
             pSummoned->SetInCombatWithZone();
     }
 
-    void SummonedCreatureJustDied(Creature* pSummoned)
+    void SummonedCreatureJustDied(Creature* pSummoned) override
     {
         // decrease the number of vapors when they die
         if (pSummoned->GetEntry() == NPC_SARONITE_VAPOR)
         {
-            pSummoned->CastSpell(pSummoned, SPELL_SARONITE_VAPORS, true, 0, 0, m_creature->GetObjectGuid());
+            pSummoned->CastSpell(pSummoned, SPELL_SARONITE_VAPORS, true);
             m_lVaporsGuids.remove(pSummoned->GetObjectGuid());
         }
         // remove saronite barrier when animus dies
@@ -257,7 +252,7 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
 
         if (m_uiMarkTimer < uiDiff)
         {
-            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 1, SPELL_MARK_OF_FACELESS, SELECT_FLAG_PLAYER))
+            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 1))
             {
                 if (DoCastSpellIfCan(pTarget, SPELL_MARK_OF_FACELESS) == CAST_OK)
                     m_uiMarkTimer = urand(25000, 30000);
@@ -268,7 +263,7 @@ struct MANGOS_DLL_DECL boss_general_vezaxAI : public ScriptedAI
 
         if (m_uiCrashTimer < uiDiff)
         {
-            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 1, SPELL_SHADOW_CRASH, SELECT_FLAG_NOT_IN_MELEE_RANGE | SELECT_FLAG_PLAYER))
+            if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 1))
             {
                 if (DoCastSpellIfCan(pTarget, SPELL_SHADOW_CRASH) == CAST_OK)
                     m_uiCrashTimer = 15000;
@@ -297,7 +292,7 @@ CreatureAI* GetAI_boss_general_vezax(Creature* pCreature)
     return new boss_general_vezaxAI(pCreature);
 }
 
-bool ProcessEventId_event_spell_saronite_barrier(uint32 uiEventId, Object* pSource, Object* pTarget, bool bIsStart)
+bool ProcessEventId_event_spell_saronite_barrier(uint32 /*uiEventId*/, Object* pSource, Object* /*pTarget*/, bool /*bIsStart*/)
 {
     if (pSource->GetTypeId() == TYPEID_UNIT && ((Creature*)pSource)->GetEntry() == NPC_VEZAX)
     {
@@ -315,52 +310,6 @@ bool ProcessEventId_event_spell_saronite_barrier(uint32 uiEventId, Object* pSour
     return false;
 }
 
-// Saronite animus
-struct MANGOS_DLL_DECL mob_saronite_animusAI : public ScriptedAI
-{
-    mob_saronite_animusAI(Creature* pCreature) : ScriptedAI(pCreature)
-    {
-        m_pInstance = (instance_ulduar*)pCreature->GetInstanceData();
-        Reset();
-    }
-
-    instance_ulduar* m_pInstance;
-
-    uint32 m_uiProfoundDarknessTimer;
-
-    void Reset()
-    {
-        m_uiProfoundDarknessTimer = 3000;
-        m_creature->SetRespawnDelay(DAY);
-    }
-
-    void UpdateAI(const uint32 uiDiff) override
-    {
-        if (m_pInstance && m_pInstance->GetData(TYPE_VEZAX) != IN_PROGRESS) 
-            m_creature->ForcedDespawn();
-
-        if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
-            return;
-
-        DoCastSpellIfCan(m_creature, SPELL_ANIMUS_FORMATION, CAST_AURA_NOT_PRESENT);
-
-        if(m_uiProfoundDarknessTimer < uiDiff)
-        {
-            if (DoCastSpellIfCan(m_creature, SPELL_PROFOUND_DARKNESS) == CAST_OK)
-                m_uiProfoundDarknessTimer = urand(2000, 3000);
-        }
-        else
-            m_uiProfoundDarknessTimer -= uiDiff;
-
-        DoMeleeAttackIfReady();
-    }
-};
-
-CreatureAI* GetAI_mob_saronite_animus(Creature* pCreature)
-{
-    return new mob_saronite_animusAI(pCreature);
-}
-
 void AddSC_boss_general_vezax()
 {
     Script* pNewScript;
@@ -373,10 +322,5 @@ void AddSC_boss_general_vezax()
     pNewScript = new Script;
     pNewScript->Name = "event_spell_saronite_barrier";
     pNewScript->pProcessEventId = &ProcessEventId_event_spell_saronite_barrier;
-    pNewScript->RegisterSelf();
-
-    pNewScript = new Script;
-    pNewScript->Name = "mob_saronite_animus";
-    pNewScript->GetAI = &GetAI_mob_saronite_animus;
     pNewScript->RegisterSelf();
 }

@@ -540,9 +540,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/ahbot.conf.dist DESTINATION ${CONF_DIR
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mangchat/mangchat.conf.dist.in ${CMAKE_CURRENT_BINARY_DIR}/mangchat/mangchat.conf.dist)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mangchat/mangchat.conf.dist DESTINATION ${CONF_DIR})
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mangchat/innormative_words.txt ${CMAKE_CURRENT_BINARY_DIR}/mangchat/innormative_words.txt)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mangchat/innormative_words.txt ${CMAKE_CURRENT_BINARY_DIR}/mangchat/innormative_words)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mangchat/innormative_words DESTINATION ${BIN_DIR})
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mangchat/letter_analogs.txt ${CMAKE_CURRENT_BINARY_DIR}/mangchat/letter_analogs.txt)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mangchat/letter_analogs.txt ${CMAKE_CURRENT_BINARY_DIR}/mangchat/letter_analogs)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mangchat/letter_analogs DESTINATION ${BIN_DIR})
 
 # Generate precompiled header
