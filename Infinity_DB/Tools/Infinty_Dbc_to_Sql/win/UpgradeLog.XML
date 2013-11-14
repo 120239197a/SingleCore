@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="dbctosql-VC90">
+</Property><Property Name="Solution File" Value="F:\GitHub\I_MaNGOS\Infinity_DB\Tools\Infinty_Dbc_to_Sql\win\dbctosql-VC90.sln">
+</Property><Property Name="Date" Value="Thursday, November 14, 2013">
+</Property><Property Name="Time" Value="4:41 AM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="dbctosql-VC90.sln" Description="File successfully backed up as F:\GitHub\I_MaNGOS\Infinity_DB\Tools\Infinty_Dbc_to_Sql\win\dbctosql-VC90.sln.old">
+</Event><Event ErrorLevel="0" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="Converting project file 'F:\GitHub\I_MaNGOS\Infinity_DB\Tools\Infinty_Dbc_to_Sql\win\VC90\dbctosql.vcproj'.">
+</Event><Event ErrorLevel="1" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="Done converting to new project file 'F:\GitHub\I_MaNGOS\Infinity_DB\Tools\Infinty_Dbc_to_Sql\win\VC90\dbctosql.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="dbctosql" Source="VC90\dbctosql.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="dbctosql-VC90.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="dbctosql-VC90.sln" Description="Converted">
+</Event></UpgradeLog>
