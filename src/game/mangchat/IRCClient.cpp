@@ -38,14 +38,14 @@ IRCClient::~IRCClient(){}
 // ZThread Entry This function is called when the thread is created in Master.cpp (mangosd)
 void IRCClient::run()
 {
-    sIRC.iLog.WriteLog(" %s : ****** MaNGOS With MangChat Has Been Started ******", sIRC.iLog.GetLogDateTimeStr().c_str());
+    sIRC.iLog.WriteLog(" %s : ****** I_MaNGOS With MangChat Has Been Started ******", sIRC.iLog.GetLogDateTimeStr().c_str());
 
     // Before we begin we wait a while MaNGOS is still starting up.
     ACE_Based::Thread::Sleep(500);
     sLog.outString("\n%s\n%s\n%s\n%s",
         "***************************************",
         "**   MangChat Threaded IRC Client    **",
-        "**         for MangosR2              **",
+        "**       for Infinity_MaNGOS         **",
         "***************************************");
     sLog.outString("MangChat: %s", sIRC._Mver.c_str());
     int cCount = 0;
