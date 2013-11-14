@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `character_battleground_random`;
 CREATE TABLE `character_battleground_random` (
     `guid` int(11) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY  (`guid`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- Anticheat tables from /dev/rsa
 
@@ -27,7 +27,7 @@ CREATE TABLE `anticheat_config` (
     `actionparam2` mediumint(8) NOT NULL default '0' COMMENT 'Action parameter 1',
     `disabledzones` varchar(255) NOT NULL DEFAULT '' COMMENT 'List of zones, in which check disabled.',
     PRIMARY KEY (`checktype`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Anticheat configuration';
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Anticheat configuration';
 
   -- better not drop table here, because of custom data
 CREATE TABLE IF NOT EXISTS `anticheat_log` (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `anticheat_log` (
     `action2` mediumint(8) NOT NULL default '0',
     PRIMARY KEY (`checktype`, `alarm_time`, `guid`),
     KEY idx_Player (`guid`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='Anticheat log table';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Anticheat log table';
 
 -- Anticheat
 -- Config
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `autobroadcast` (
   `text` longtext NOT NULL,
   `next` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=INNODB  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- BOP item trade
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `item_soulbound_trade_data` (
     `itemGuid` int(16) unsigned NOT NULL DEFAULT '0',
     `allowedPlayers` varchar(255) NOT NULL DEFAULT '',
     PRIMARY KEY (`itemGuid`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='BOP item trade cache';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='BOP item trade cache';
 
 -- Group flags and roles support
 -- Commit a5e57729fc5211bb6a2f
@@ -247,7 +247,7 @@ CREATE TABLE `character_stats` (
   `activeSpec` tinyint(3) unsigned NOT NULL default '0',
   `data` longtext NOT NULL,
   PRIMARY KEY  (`guid`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `worldstate_data`;
 CREATE TABLE IF NOT EXISTS `worldstate_data` (
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `worldstate_data` (
     `value`            int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Current value of WorldState',
     `renewtime`        bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Time of last renew of WorldState',
     PRIMARY KEY (`state_id`,`instance`, `type`, `condition`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='WorldState data storage';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='WorldState data storage';
 
 DROP TABLE IF EXISTS `item_refund_instance`;
 CREATE TABLE `item_refund_instance` (
@@ -282,7 +282,7 @@ CREATE TABLE `calendar_events` (
   `title`            varchar(256) NOT NULL DEFAULT '',
   `description`      varchar(1024) NOT NULL DEFAULT '',
   PRIMARY KEY  (`eventId`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `calendar_invites`;
 CREATE TABLE `calendar_invites` (
@@ -295,7 +295,7 @@ CREATE TABLE `calendar_invites` (
   `rank`             tinyint(3) unsigned NOT NULL DEFAULT '0',
   `description`      varchar(256) NOT NULL DEFAULT '',
   PRIMARY KEY  (`inviteId`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- chat log tables from mns
 DROP TABLE IF EXISTS `chat_log_bg`;
@@ -310,7 +310,7 @@ CREATE TABLE `chat_log_bg` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_channel`;
 CREATE TABLE `chat_log_channel` (
@@ -323,7 +323,7 @@ CREATE TABLE `chat_log_channel` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_chat`;
 CREATE TABLE `chat_log_chat` (
@@ -336,7 +336,7 @@ CREATE TABLE `chat_log_chat` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_guild`;
 CREATE TABLE `chat_log_guild` (
@@ -350,7 +350,7 @@ CREATE TABLE `chat_log_guild` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_party`;
 CREATE TABLE `chat_log_party` (
@@ -363,7 +363,7 @@ CREATE TABLE `chat_log_party` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_raid`;
 CREATE TABLE `chat_log_raid` (
@@ -377,7 +377,7 @@ CREATE TABLE `chat_log_raid` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `chat_log_whisper`;
 CREATE TABLE `chat_log_whisper` (
@@ -390,4 +390,4 @@ CREATE TABLE `chat_log_whisper` (
             `account_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
             `status` SET('hidden', 'marked', 'banned') NOT NULL DEFAULT '',
             PRIMARY KEY (`guid`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

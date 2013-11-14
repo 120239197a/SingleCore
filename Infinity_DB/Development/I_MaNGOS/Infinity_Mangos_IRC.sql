@@ -8,7 +8,7 @@ CREATE TABLE `IRC_Commands` (
   `Description` varchar(150) NOT NULL default '',
   `gmlevel` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`Command`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='IRC Module System';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='IRC Module System';
 
 -- ----------------------------
 -- Records

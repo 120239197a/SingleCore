@@ -29,7 +29,7 @@ echo 888    888 888  "Y88b    ( Credits for DB project lay out and set up to )
 echo 888    888 888    888     (PSMDB and fallenangelX )
 echo 888  .d88P 888   d88P
 echo 8888888P"  8888888P"
-echo Infinity_MaNGOS DB Project       DB__Version 2.4
+echo Infinity_MaNGOS DB Project       DB__Version 2.5
 echo I_MaNGOS = I_ScriptDev2 = Characters = Realmd = Databases SQLS
 echo.
 echo.
@@ -158,7 +158,6 @@ echo.
 echo Importing World Run Last DB updates
 
 for %%i in (%dbpath10%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
-
 
 :done
 echo.

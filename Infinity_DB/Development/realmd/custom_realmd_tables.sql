@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `account_friends` (
     `bind_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Bring date',
     `expire_date` datetime NOT NULL DEFAULT 0 COMMENT 'Expire date',
     PRIMARY KEY (`id`, `friend_id`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Stores accounts for refer-a-friend system.';
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Stores accounts for refer-a-friend system.';
 
 -- Warden data table structure from TOM_RUS
 DROP TABLE IF EXISTS `warden_data_result`;
@@ -22,7 +22,7 @@ CREATE TABLE `warden_data_result` (
   `result` tinytext,
   `comment` text,
   PRIMARY KEY  (`id`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- realmd table update for warden
 ALTER TABLE `account`
@@ -1637,6 +1637,6 @@ CREATE TABLE `multi_IP_whitelist` (
   `whitelist` varchar(500) DEFAULT NULL,
   `comment` longtext,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 

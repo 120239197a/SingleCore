@@ -1,4 +1,5 @@
 -- Implement spell linked definitions storage
+DROP TABLE IF EXISTS `spell_linked`;
 CREATE TABLE IF NOT EXISTS `spell_linked` (
     `entry`            int(10) unsigned NOT NULL COMMENT 'Spell entry',
     `linked_entry`     int(10) unsigned NOT NULL COMMENT 'Linked spell entry',
@@ -6,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `spell_linked` (
     `effect_mask`      int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'mask of effect (NY)',
     `comment`          varchar(255) NOT NULL DEFAULT '',
      PRIMARY KEY (`entry`,`linked_entry`,`type`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Linked spells storage';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Linked spells storage';
 
 
 -- Implement DBC encounters
@@ -70,7 +71,7 @@ CREATE TABLE `pet_scaling_data` (
   `crit` mediumint(8) NOT NULL default '0',
   `regen` mediumint(8) NOT NULL default '0',
   PRIMARY KEY (`creature_entry`, `aura`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Stores pet scaling data (in percent from owner value).';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Stores pet scaling data (in percent from owner value).';
 
 -- Spell DBC
 DROP TABLE IF EXISTS `spell_dbc`;
@@ -199,7 +200,6 @@ CREATE TABLE IF NOT EXISTS `spell_dbc` (
 
 
 -- Spell disabled
--- Commit 70d09c64ce0d3263a7e4
 
 DROP TABLE IF EXISTS `spell_disabled`;
 CREATE TABLE `spell_disabled` (
@@ -219,7 +219,6 @@ ALTER TABLE `vehicle_accessory`
     ADD COLUMN `offset_o` FLOAT NOT NULL DEFAULT '0' COMMENT 'custom passenger offset O' AFTER `offset_z`;
 
 -- Vehicle Tables
--- Commit 3be940faa44326abc801
 
 ALTER TABLE `creature_template`
     ADD COLUMN `PowerType` tinyint(3) unsigned NOT NULL default '0' AFTER `MaxHealth`;
@@ -258,6 +257,8 @@ ALTER TABLE `spell_pet_auras`
     DROP PRIMARY KEY,
     ADD PRIMARY KEY (`spell`, `effectId`, `pet`, `aura`);
 
+-- creature spell table
+DROP TABLE IF EXISTS `creature_spell`;
 CREATE TABLE IF NOT EXISTS `creature_spell` (
     `guid`      int(11) unsigned NOT NULL COMMENT 'Unique entry from creature_template',
     `spell`     int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell id from DBC',
@@ -266,27 +267,29 @@ CREATE TABLE IF NOT EXISTS `creature_spell` (
     `disabled`  tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Boolean state for spell',
     `flags`     int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell custom flags',
      PRIMARY KEY (`guid`,`index`,`active`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Creature spells storage';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='Creature spells storage';
 
 -- ---------------------------------
 -- Player race/faction change tables
-
+DROP TABLE IF EXISTS `player_factionchange_quests`;
 CREATE TABLE IF NOT EXISTS `player_factionchange_quests` (
     `alliance_id` int(8) NOT NULL,
     `commentA` varchar(255) DEFAULT NULL,
     `horde_id` int(8) NOT NULL,
     `commentH` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`alliance_id`, `horde_id`)
-) DEFAULT CHARSET=UTF8;
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+DROP TABLE IF EXISTS `player_factionchange_achievements`;
 CREATE TABLE IF NOT EXISTS `player_factionchange_achievements` (
     `alliance_id` int(8) NOT NULL,
     `horde_id` int(8) NOT NULL,
     `CommentA` varchar(255) NOT NULL,
     `CommentH` varchar(255) NOT NULL,
     PRIMARY KEY (`alliance_id`,`horde_id`)
-) DEFAULT CHARSET=UTF8;
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+DROP TABLE IF EXISTS `player_factionchange_items`;
 CREATE TABLE IF NOT EXISTS `player_factionchange_items` (
     `race_A` int(8) NOT NULL DEFAULT '0',
     `alliance_id` int(8) NOT NULL,
@@ -295,8 +298,9 @@ CREATE TABLE IF NOT EXISTS `player_factionchange_items` (
     `horde_id` int(8) NOT NULL,
     `commentH` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`alliance_id`,`horde_id`)
-) DEFAULT CHARSET=UTF8;
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+DROP TABLE IF EXISTS `player_factionchange_reputations`;
 CREATE TABLE IF NOT EXISTS `player_factionchange_reputations` (
     `race_A` int(8) NOT NULL DEFAULT '0',
     `alliance_id` int(8) NOT NULL,
@@ -305,8 +309,9 @@ CREATE TABLE IF NOT EXISTS `player_factionchange_reputations` (
     `horde_id` int(8) NOT NULL,
     `commentH` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`alliance_id`,`horde_id`)
-) DEFAULT CHARSET=UTF8;
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+DROP TABLE IF EXISTS `player_factionchange_spells`;
 CREATE TABLE IF NOT EXISTS  `player_factionchange_spells` (
     `race_A` int(8) NOT NULL DEFAULT '0',
     `alliance_id` int(8) NOT NULL,
@@ -315,18 +320,19 @@ CREATE TABLE IF NOT EXISTS  `player_factionchange_spells` (
     `horde_id` int(8) NOT NULL,
     `commentH` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`race_A`,`alliance_id`,`race_H`,`horde_id`)
-) DEFAULT CHARSET=UTF8;
+) ENGINE=MyISAM DEFAULT CHARSET=UTF8;
 
+DROP TABLE IF EXISTS `player_factionchange_titles`;
 CREATE TABLE IF NOT EXISTS `player_factionchange_titles` (
   `alliance_id` int(8) NOT NULL,
   `alliance_comment` varchar(255) NOT NULL,
   `horde_id` int(8) NOT NULL,
   `horde_comment` varchar(255) NOT NULL,
   PRIMARY KEY (`alliance_id`,`horde_id`)
-) DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- World State
-
+DROP TABLE IF EXISTS `worldstate_template`;
 CREATE TABLE IF NOT EXISTS `worldstate_template` (
     `state_id`         int(10) unsigned NOT NULL COMMENT 'WorldState ID',
     `type`             int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'WorldState type',
@@ -337,4 +343,4 @@ CREATE TABLE IF NOT EXISTS `worldstate_template` (
     `ScriptName`       char(64) NOT NULL default '' COMMENT 'Script name for WorldState (FFU)',
     `comment`          varchar(255) NOT NULL DEFAULT '',
     PRIMARY KEY (`state_id`,`type`,`condition`,`linked_id`)
-) DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='WorldState templates storage';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 PACK_KEYS=0 COMMENT='WorldState templates storage';
