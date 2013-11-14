@@ -29,7 +29,8 @@ echo 888    888 888  "Y88b    ( Credits for DB project lay out and set up to )
 echo 888    888 888    888     (PSMDB and fallenangelX )
 echo 888  .d88P 888   d88P
 echo 8888888P"  8888888P"
-echo Infinity_MaNGOS DB Project       DB__Version 2.2
+echo Infinity_MaNGOS DB Project       DB__Version 2.4
+echo I_MaNGOS = I_ScriptDev2 = Characters = Realmd = Databases SQLS
 echo.
 echo.
 set /p svr=What is your MySQL host name?           [localhost]   :
@@ -54,10 +55,9 @@ set dbpath=Development\mangos
 set dbpath1=Development\characters
 set dbpath2=Development\realmd
 set dbpath3=Development\scriptdev2
-set dbpath4=Development\mangosR2
-set dbpath5=Development\mangosR2sd2
+set dbpath5=Development\I_MaNGOS_sd2
 set dbpath6=Development
-set dbpath9=Development\Infinity_DB_Updates
+set dbpath9=Development\I_MaNGOS
 set dbpath10=Development\Run_Last
 set mysql=.
 
@@ -73,7 +73,7 @@ goto :eof
 
 :Create
 if %quick% == off echo.
-if %quick% == off echo Do u need to create new databases
+if %quick% == off echo Do u need to create new databases (*This will wipe your current DBs*)
 if %quick% == off set /p yesno=Do you wish to continue? (y/n)
 if %quick% == off if %yesno% neq y if %yesno% neq Y goto World
 
@@ -86,32 +86,32 @@ for %%i in (%dbpath6%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\
 if %quick% == off echo.
 if %quick% == off echo This will wipe out your current World database and replace it.
 if %quick% == off set /p yesno=Do you wish to continue? (y/n)
-if %quick% == off if %yesno% neq y if %yesno% neq Y goto MangosR2
+if %quick% == off if %yesno% neq y if %yesno% neq Y goto I_MaNGOS
 
 echo.
 echo Importing World database
 
 for %%i in (%dbpath%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
 
-:MangosR2
+:I_MaNGOS
 if %quick% == off echo.
-if %quick% == off echo This will run the R2 sql Updates.
+if %quick% == off echo This run the I_MaNGOS Update sqls Needed for I_MaNGOS.
 if %quick% == off set /p yesno=Do you wish to continue? (y/n)
-if %quick% == off if %yesno% neq y if %yesno% neq Y goto MangosR2sd2
+if %quick% == off if %yesno% neq y if %yesno% neq Y goto :I_MaNGOS_sd2
 
 echo.
 echo Importing World database updates
 
-for %%i in (%dbpath4%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
+for %%i in (%dbpath9%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
 
-:MangosR2sd2
+:I_MaNGOS_sd2
 if %quick% == off echo.
-if %quick% == off echo This run the r2sd2 sql Updates.
+if %quick% == off echo This run the I_MaNGOS_sd2 Update sqls Needed for I_MaNGOS'S I_ScriptDev2.
 if %quick% == off set /p yesno=Do you wish to continue? (y/n)
 if %quick% == off if %yesno% neq y if %yesno% neq Y goto sd2
 
 echo.
-echo Importing World database updates
+echo Importing World database updates needed for I_ScriptDev2
 
 for %%i in (%dbpath5%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
 
@@ -122,7 +122,7 @@ if %quick% == off set /p yesno=Do you wish to continue? (y/n)
 if %quick% == off if %yesno% neq y if %yesno% neq Y goto characters
 
 echo.
-echo Importing ScriptDev2 database
+echo Importing I_ScriptDev2 database
 
 for %%i in (%dbpath3%\*.sql) do if %%i neq %dbpath%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %sd2db% < %%i
 
@@ -141,23 +141,12 @@ for %%i in (%dbpath1%\*.sql) do if %%i neq %dbpath%\*.sql if %%i neq %dbpath1%\*
 echo.
 echo This will wipe out your current Realm database and replace it.
 set /p yesno=Do you wish to continue? (y/n)
-if %yesno% neq y if %yesno% neq Y goto Infinity_DB_UPDATES
+if %yesno% neq y if %yesno% neq Y goto Run_Last
 
 echo.
 echo Importing Realm database
 
 for %%i in (%dbpath2%\*.sql) do if %%i neq %dbpath%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath3%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %rdb% < %%i
-
-:Infinity_DB_UPDATES
-if %quick% == off echo.
-if %quick% == off echo This will your DB with Infinity Updates.
-if %quick% == off set /p yesno=Do you wish to continue? (y/n)
-if %quick% == off if %yesno% neq y if %yesno% neq Y goto Run_Last
-
-echo.
-echo Importing World database updates
-
-for %%i in (%dbpath9%\*.sql) do if %%i neq %dbpath3%\*.sql if %%i neq %dbpath1%\*.sql if %%i neq %dbpath2%\*.sql echo %%i & %mysql%\mysql -q -s -h %svr% --user=%user% --password=%pass% --port=%port% %wdb% < %%i
 
 :Run_Last
 if %quick% == off echo.
