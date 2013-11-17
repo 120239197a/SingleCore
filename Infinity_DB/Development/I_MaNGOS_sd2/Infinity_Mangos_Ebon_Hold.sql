@@ -189,6 +189,12 @@ DELETE FROM `creature_ai_scripts` WHERE (`creature_id`=28610);
 -- EAI Text clean up for quests/sd2
 DELETE FROM `creature_ai_texts` WHERE `entry` BETWEEN -565 AND -555;
 
+-- --------------------------------------
+-- Quest tonight we dine in have.       -
+-- --------------------------------------
+-- upped the arrow holding GO respawn time from 2 mins to 5 mins ( force to look else where then just the two safe spots)
+UPDATE `gameobject` SET `spawntimesecs` = 300 WHERE `id` = 190691;
+
 -- --------------------------------------------------------
 -- KEEP ALL OTHER ACTIVE SQL ABOVE THIS LINE
 
