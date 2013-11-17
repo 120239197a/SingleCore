@@ -287,8 +287,10 @@ UPDATE `creature` SET `curhealth` = 10132 WHERE `id` = 28906;
 -- DELETE FROM `creature_template_addon` WHERE `entry` IN (28614,28616);
 -- ????????????????????????????????????????????????????????????????
 
--- Research and not rdy stuff
--- ROUGH DRAFT NOT FINSIHED YET
+/* -----------------------------------------------------------------------------------------------
+                            -- Research and not rdy stuff--
+                           -- ROUGH DRAFT NOT FINSIHED YET --
+-- -----------------------------------------------------------------------------------------------
 
 -- EventAI scripts name set
 -- UPDATE `creature_template` SET `AIName` = "EventAI", `scriptname` = "" WHERE entry IN (28834, 28892, 28856, 28850, 29104, 28941, 28942, 28577, 28576, 28557);
@@ -357,6 +359,65 @@ Citizen of New Avalon says: You may take my life, but you won't take my freedom!
 Citizen of New Avalon says: You're not taking me without a fight!
 Citizen of New Avalon says: You're useless, Quimby!
 */
+
+/*npc 28834 scarlet defender
+Scarlet Fleet Defender yells: BEHIND US! They've taken the ships!
+Scarlet Fleet Defender yells: Death to the Scourge!
+Scarlet Fleet Defender yells: Get 'em off that ship! Kill every last one of 'em!
+Scarlet Fleet Defender yells: How could this have happened!?
+Scarlet Fleet Defender yells: I don't believe it!
+Scarlet Fleet Defender yells: MONSTERS!
+Scarlet Fleet Defender yells: Take cover! Take cover!
+Scarlet Fleet Defender yells: The Scourge has broken through!
+
+/* scarlet capt, medic, infantry
+Scarlet Captain says: By the Light be cleansed!
+Scarlet Captain says: Double your efforts! Get this wood piled up and ready for shipment to New Avalon!
+Scarlet Captain says: Faster, brother! I don't know how much longer we can hold these Scourge monsters back!
+Scarlet Captain says: Havenshire will soon be overrun with Scourge. We must hurry!
+Scarlet Captain says: I will present your head to Abbendis myself!
+Scarlet Captain says: Let the purging begin!
+Scarlet Captain says: Scourge filth! DIE!
+Scarlet Captain says: The Crusade will be victorious!
+Scarlet Captain says: The horns of war have sounded! We haven't much time! Quicken your pace!
+Scarlet Captain says: You're not welcome in these lands, monster!
+
+/* -- scarlet miner (take the cart to the boat)
+Scarlet Miner says: I'll just leave it here and nobody will be the wiser!
+Scarlet Miner says: Where'd this come from? I better get this down to the ships before the foreman sees it!
+
+/* scarlet marksmen
+Scarlet Marksman says: ARGH! You burned my last good tabard!
+Scarlet Marksman says: Argh... The pain... The pain is almost as unbearable as the lashings I received in grammar school when I was but a child.
+Scarlet Marksman says: By the Light be cleansed!
+Scarlet Marksman says: Do you think this to be pain? To be suffering? HAH! Destroy this mortal shell so that I may ascend to the heavens!
+Scarlet Marksman says: HAH! I've survived three separate inquisitions! This is nothing in comparison!
+Scarlet Marksman says: I know very litte else... The High General chooses who may go and who must stay behind. There's nothing else... You must believe me!
+Scarlet Marksman says: I used to work for Grand Inquisitor Isillien! Your idea of pain is a normal mid-afternoon for me!
+Scarlet Marksman says: I will present your head to Abbendis myself!
+Scarlet Marksman says: I'll tell you everything! STOP! PLEASE!
+Scarlet Marksman says: I'll tell you nothing, Scourge filth!
+Scarlet Marksman says: I'm going to send you back to the Lich King in pieces!
+Scarlet Marksman says: Let the purging begin!
+Scarlet Marksman says: Look out! There's a bee loose and it's on a stinging rampage!
+Scarlet Marksman says: NO! PLEASE! There is one more thing that I forgot to mention... A courier comes soon... From Hearthglen. It...
+Scarlet Marksman says: Scourge filth! DIE!
+Scarlet Marksman says: That one tickled...
+Scarlet Marksman says: The crimson what? Never heard of it...
+Scarlet Marksman says: The Crusade will be victorious!
+Scarlet Marksman says: The Light that guides us. This movement was set in motion before you came... We... We do as we are told. It is what must be done.
+Scarlet Marksman says: The pain is momentary. It pales in comparison to what the High General would do to me...
+Scarlet Marksman says: We... We have only been told that the "Crimson Dawn" is an awakening. You... You see, the Light speaks to the High General. It is the Light...
+Scarlet Marksman says: You hit like a girl. Honestly. Is that the best you can do?
+Scarlet Marksman says: You know nothing of pain, monster!
+Scarlet Marksman says: You'll be hanging in the gallows shortly, Scourge fiend!
+Scarlet Marksman says: You'll have to kill me, monster. I will tell you NOTHING!
+Scarlet Marksman says: You're not welcome in these lands, monster!
+Scarlet Marksman says: You... You'll get nothing... And like it...
+
+/* scarlet fleet commander
+Scarlet Fleet Guardian says: You're not welcome in these lands, monster!
+
 
 
 

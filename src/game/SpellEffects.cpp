@@ -10126,7 +10126,7 @@ void Spell::EffectScriptEffect(SpellEffectIndex eff_idx)
                 case 52124:                                 // Sky Darkener Assault
                 {
                     if (unitTarget && unitTarget != m_caster)
-                        m_caster->CastSpell(unitTarget, 52125, false);
+                        m_caster->CastSpell(unitTarget, 52125, true);
                     break;
                 }
                 case 52357:                                 // Into the realm of shadows
