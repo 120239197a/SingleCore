@@ -1,3 +1,13 @@
+-- Infinity's I_AWoW needed table
+CREATE TABLE IF NOT EXISTS `account_reputation` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL DEFAULT '',
+  `reputation` varchar(5) NOT NULL DEFAULT '0',
+  `reason` varchar(255) NOT NULL DEFAULT '',
+  `date` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
 -- Refer a friend
 
   -- better not to drop table here, because of custom data comment out drop some people may clear table if they choose

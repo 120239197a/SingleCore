@@ -1,5 +1,5 @@
 -- Implement spell linked definitions storage
-DROP TABLE IF EXISTS `spell_linked`;
+
 CREATE TABLE IF NOT EXISTS `spell_linked` (
     `entry`            int(10) unsigned NOT NULL COMMENT 'Spell entry',
     `linked_entry`     int(10) unsigned NOT NULL COMMENT 'Linked spell entry',
@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS `spell_linked` (
 
 -- Implement DBC encounters
 
-DROP TABLE IF EXISTS `instance_encounters`;
 CREATE TABLE `instance_encounters` (
     `entry` int(10) unsigned NOT NULL COMMENT 'Unique entry from DungeonEncounter.dbc',
     `creditType` tinyint(3) unsigned NOT NULL DEFAULT '0',
