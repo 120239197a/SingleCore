@@ -1,5 +1,5 @@
 -- Implement spell linked definitions storage
-DROP TABLE IF EXISTS `spell_linked`;
+
 CREATE TABLE IF NOT EXISTS `spell_linked` (
     `entry`            int(10) unsigned NOT NULL COMMENT 'Spell entry',
     `linked_entry`     int(10) unsigned NOT NULL COMMENT 'Linked spell entry',
@@ -11,9 +11,8 @@ CREATE TABLE IF NOT EXISTS `spell_linked` (
 
 
 -- Implement DBC encounters
-
 DROP TABLE IF EXISTS `instance_encounters`;
-CREATE TABLE `instance_encounters` (
+CREATE TABLE IF NOT EXISTS `instance_encounters` (
     `entry` int(10) unsigned NOT NULL COMMENT 'Unique entry from DungeonEncounter.dbc',
     `creditType` tinyint(3) unsigned NOT NULL DEFAULT '0',
     `creditEntry` int(10) unsigned NOT NULL DEFAULT '0',
@@ -25,7 +24,7 @@ CREATE TABLE `instance_encounters` (
 -- LFG dungeon reward structure from TC
 
 DROP TABLE IF EXISTS `lfg_dungeon_rewards`;
-CREATE TABLE `lfg_dungeon_rewards` (
+CREATE TABLE IF NOT EXISTS `lfg_dungeon_rewards` (
     `dungeonId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Dungeon entry from dbc',
     `maxLevel` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Max level at which this reward is rewarded',
     `firstQuestId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest id with rewards for first dungeon this day',
@@ -40,7 +39,7 @@ CREATE TABLE `lfg_dungeon_rewards` (
 -- Pet scaling data table from /dev/rsa
 
 DROP TABLE IF EXISTS `pet_scaling_data`;
-CREATE TABLE `pet_scaling_data` (
+CREATE TABLE IF NOT EXISTS `pet_scaling_data` (
   `creature_entry` mediumint(8) unsigned NOT NULL,
   `aura` mediumint(8) unsigned NOT NULL default '0',
   `healthbase` mediumint(8) NOT NULL default '0',
@@ -202,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `spell_dbc` (
 -- Spell disabled
 
 DROP TABLE IF EXISTS `spell_disabled`;
-CREATE TABLE `spell_disabled` (
+CREATE TABLE IF NOT EXISTS `spell_disabled` (
     `entry` int(11) unsigned NOT NULL default 0 COMMENT 'spell entry',
     `ischeat_spell` tinyint(3) unsigned NOT NULL default 0 COMMENT 'mark spell as cheat',
     `active` tinyint(3) unsigned NOT NULL default 1 COMMENT 'enable check of this spell',

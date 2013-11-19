@@ -189,6 +189,12 @@ DELETE FROM `creature_ai_scripts` WHERE (`creature_id`=28610);
 -- EAI Text clean up for quests/sd2
 DELETE FROM `creature_ai_texts` WHERE `entry` BETWEEN -565 AND -555;
 
+-- --------------------------------------
+-- Quest tonight we dine in have.       -
+-- --------------------------------------
+-- upped the arrow holding GO respawn time from 2 mins to 5 mins ( force to look else where then just the two safe spots)
+UPDATE `gameobject` SET `spawntimesecs` = 300 WHERE `id` = 190691;
+
 -- --------------------------------------------------------
 -- KEEP ALL OTHER ACTIVE SQL ABOVE THIS LINE
 
@@ -287,10 +293,139 @@ UPDATE `creature` SET `curhealth` = 10132 WHERE `id` = 28906;
 -- DELETE FROM `creature_template_addon` WHERE `entry` IN (28614,28616);
 -- ????????????????????????????????????????????????????????????????
 
--- ROUGH DRAFT NOT FINSIHED YET
+/* -----------------------------------------------------------------------------------------------
+                            -- Research and not rdy stuff--
+                           -- ROUGH DRAFT NOT FINSIHED YET --
+-- -----------------------------------------------------------------------------------------------
 
 -- EventAI scripts name set
 -- UPDATE `creature_template` SET `AIName` = "EventAI", `scriptname` = "" WHERE entry IN (28834, 28892, 28856, 28850, 29104, 28941, 28942, 28577, 28576, 28557);
+
+-- -----
+-- both citizens use spells
+-- 52716 - Terrified
+-- 52262 -- Cornered and Enraged
+
+/* Citizensof Havensh texts
+Citizen of Havenshire says: Come then, death knight!
+Citizen of Havenshire says: Die Scourge dog! DIE!
+Citizen of Havenshire says: DIE!
+Citizen of Havenshire says: Have mercy, madam!
+Citizen of Havenshire says: Have mercy, sir!
+Citizen of Havenshire says: I almost... made it...
+Citizen of Havenshire says: I won't go down that easy!
+Citizen of Havenshire says: Is this the best the Scourge can do?
+Citizen of Havenshire says: May the Light take mercy on your soul, death knight.
+Citizen of Havenshire says: No! Please! I... I have children! I... I...
+Citizen of Havenshire says: P... Please don't...
+Citizen of Havenshire says: Spare my life! I will leave this place forever! Please!
+Citizen of Havenshire says: Why?
+Citizen of Havenshire says: You make my children orphans on this day, fiend!
+Citizen of Havenshire says: You may take my life, but you won't take my freedom!
+Citizen of Havenshire says: You're not taking me without a fight!
+*/
+
+/*citizens of avol texts
+Citizen of New Avalon says: Ask for anything and you shall have it! Just spare my life!
+Citizen of New Avalon says: Come then, death knight!
+Citizen of New Avalon says: Die Scourge dog! DIE!
+Citizen of New Avalon says: DIE!
+Citizen of New Avalon says: Everybody is dying! Help us!
+Citizen of New Avalon says: Filthy coward! Get it over with...
+Citizen of New Avalon says: HELP! HELP!
+Citizen of New Avalon says: I assure you this much, Quimby, you won't be getting my vote next term!
+Citizen of New Avalon says: I want on that last ship! Don't leave us!
+Citizen of New Avalon says: I won't go down that easy!
+Citizen of New Avalon says: I'll give you anything you want! Just let me live!
+Citizen of New Avalon says: I'm too young to die!
+Citizen of New Avalon says: If you don't come out, we'll tear this place apart!
+Citizen of New Avalon says: Is nowhere safe from these monsters?
+Citizen of New Avalon says: Is this the best the Scourge can do?
+Citizen of New Avalon says: My whole family's been killed! Where was the army when we needed them most?
+Citizen of New Avalon says: Naxxramas is gone? Who cares! Acherus is here now and the death knights are killing everybody!
+Citizen of New Avalon says: No more lies, Quimby! We want answers!
+Citizen of New Avalon says: QUIMBY!!!!!!
+Citizen of New Avalon says: RUN FOR YOUR LIVES!
+Citizen of New Avalon says: Scourge scum... May the Light purge you from this world!
+Citizen of New Avalon says: SCOURGE!!! RUN!!!
+Citizen of New Avalon says: So much for the Scarlet "paradise!"
+Citizen of New Avalon says: Somebody save me!
+Citizen of New Avalon says: Spare my life, <name>! Please!
+Citizen of New Avalon says: Spare my life, Citizen of New Avalon! Please!
+Citizen of New Avalon says: The Scourge are running freely through the streets!
+Citizen of New Avalon says: The Scourge has broken through! RUN AWAY! RUN AWAY!
+Citizen of New Avalon says: The... They promised that we'd be safe...
+Citizen of New Avalon says: This is a slap in the face! We demand answers!
+Citizen of New Avalon says: We were promised safety! Security!
+Citizen of New Avalon says: We're all gonna die!!!
+Citizen of New Avalon says: We're done for! Save us, Quimby!
+Citizen of New Avalon says: What's "Crimson Dawn!" We deserve to know the truth, Quimby!
+Citizen of New Avalon says: Where are those ships going, Quimby! Tell us the truth!
+Citizen of New Avalon says: You may take my life, but you won't take my freedom!
+Citizen of New Avalon says: You're not taking me without a fight!
+Citizen of New Avalon says: You're useless, Quimby!
+*/
+
+/*npc 28834 scarlet defender
+Scarlet Fleet Defender yells: BEHIND US! They've taken the ships!
+Scarlet Fleet Defender yells: Death to the Scourge!
+Scarlet Fleet Defender yells: Get 'em off that ship! Kill every last one of 'em!
+Scarlet Fleet Defender yells: How could this have happened!?
+Scarlet Fleet Defender yells: I don't believe it!
+Scarlet Fleet Defender yells: MONSTERS!
+Scarlet Fleet Defender yells: Take cover! Take cover!
+Scarlet Fleet Defender yells: The Scourge has broken through!
+
+/* scarlet capt, medic, infantry
+Scarlet Captain says: By the Light be cleansed!
+Scarlet Captain says: Double your efforts! Get this wood piled up and ready for shipment to New Avalon!
+Scarlet Captain says: Faster, brother! I don't know how much longer we can hold these Scourge monsters back!
+Scarlet Captain says: Havenshire will soon be overrun with Scourge. We must hurry!
+Scarlet Captain says: I will present your head to Abbendis myself!
+Scarlet Captain says: Let the purging begin!
+Scarlet Captain says: Scourge filth! DIE!
+Scarlet Captain says: The Crusade will be victorious!
+Scarlet Captain says: The horns of war have sounded! We haven't much time! Quicken your pace!
+Scarlet Captain says: You're not welcome in these lands, monster!
+
+/* -- scarlet miner (take the cart to the boat)
+Scarlet Miner says: I'll just leave it here and nobody will be the wiser!
+Scarlet Miner says: Where'd this come from? I better get this down to the ships before the foreman sees it!
+
+/* scarlet marksmen
+Scarlet Marksman says: ARGH! You burned my last good tabard!
+Scarlet Marksman says: Argh... The pain... The pain is almost as unbearable as the lashings I received in grammar school when I was but a child.
+Scarlet Marksman says: By the Light be cleansed!
+Scarlet Marksman says: Do you think this to be pain? To be suffering? HAH! Destroy this mortal shell so that I may ascend to the heavens!
+Scarlet Marksman says: HAH! I've survived three separate inquisitions! This is nothing in comparison!
+Scarlet Marksman says: I know very litte else... The High General chooses who may go and who must stay behind. There's nothing else... You must believe me!
+Scarlet Marksman says: I used to work for Grand Inquisitor Isillien! Your idea of pain is a normal mid-afternoon for me!
+Scarlet Marksman says: I will present your head to Abbendis myself!
+Scarlet Marksman says: I'll tell you everything! STOP! PLEASE!
+Scarlet Marksman says: I'll tell you nothing, Scourge filth!
+Scarlet Marksman says: I'm going to send you back to the Lich King in pieces!
+Scarlet Marksman says: Let the purging begin!
+Scarlet Marksman says: Look out! There's a bee loose and it's on a stinging rampage!
+Scarlet Marksman says: NO! PLEASE! There is one more thing that I forgot to mention... A courier comes soon... From Hearthglen. It...
+Scarlet Marksman says: Scourge filth! DIE!
+Scarlet Marksman says: That one tickled...
+Scarlet Marksman says: The crimson what? Never heard of it...
+Scarlet Marksman says: The Crusade will be victorious!
+Scarlet Marksman says: The Light that guides us. This movement was set in motion before you came... We... We do as we are told. It is what must be done.
+Scarlet Marksman says: The pain is momentary. It pales in comparison to what the High General would do to me...
+Scarlet Marksman says: We... We have only been told that the "Crimson Dawn" is an awakening. You... You see, the Light speaks to the High General. It is the Light...
+Scarlet Marksman says: You hit like a girl. Honestly. Is that the best you can do?
+Scarlet Marksman says: You know nothing of pain, monster!
+Scarlet Marksman says: You'll be hanging in the gallows shortly, Scourge fiend!
+Scarlet Marksman says: You'll have to kill me, monster. I will tell you NOTHING!
+Scarlet Marksman says: You're not welcome in these lands, monster!
+Scarlet Marksman says: You... You'll get nothing... And like it...
+
+/* scarlet fleet commander
+Scarlet Fleet Guardian says: You're not welcome in these lands, monster!
+
+
+
 
 /*-- script_texts
 DELETE FROM `creature_ai_texts` WHERE `entry` BETWEEN -286099 AND -286092;
